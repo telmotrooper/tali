@@ -34,7 +34,7 @@ text = """phy#0
 
 text2 = ""
 
-match = re.search("Interface (\w+)", text)
+match = re.search("Interface (\w+)", text2)
 
 if(match != None):
   network_interface = (match.group(0).split(" ")[1])
