@@ -38,7 +38,14 @@ match = re.search("Interface (\w+)", text2)
 
 if(match != None):
   network_interface = (match.group(0).split(" ")[1])
-  print(network_interface)
+  print("Wi-Fi interface: {}".format(network_interface))
 else:
   print("No Wi-Fi interface found")
 
+boot = os.popen('ls /sys/firmware/efi/efivars', 'r').read()
+if(boot == ''):
+  boot = "BIOS"
+else:
+  boot = "UEFI"
+
+print(boot)
