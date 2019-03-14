@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-import os
-import re
-import subprocess
+import os, re, subprocess
 
 rows, columns = os.popen('stty size', 'r').read().split()
 separator = "-" * int(columns)
 
-print("Telmo's Arch Linux Installer")
+print("TALI (Telmo's Arch Linux Installer)")
 print(separator)
 
 text = """phy#0
