@@ -39,3 +39,6 @@ match = re.search("Interface (\w+)", text)
 if(match != None):
   network_interface = (match.group(0).split(" ")[1])
   print(network_interface)
+else:
+  print("No Wi-Fi interface found")
+
