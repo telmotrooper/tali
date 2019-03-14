@@ -13,5 +13,5 @@ You'll need an internet connection to use this script, if you need to use Wi-Fi 
 Then, download the script and run it:
 
 ```
-wget -b https://raw.githubusercontent.com/telmotrooper/tali/master/install.py && python install.py
+wget -q https://raw.githubusercontent.com/telmotrooper/tali/master/install.py && python install.py
 ```
