@@ -31,8 +31,10 @@ if(match != None):
 else:
   print("No Wi-Fi interface found.")
 
-boot = subprocess.check_output("ls /sys/firmware/efi/efivars", stderr=subprocess.STDOUT, shell=True)
-if(boot == ''):
+boot = subprocess.check_output("ls /sys/firmware/efi/efivars; exit 0;", shell=True, stderr=subprocess.STDOUT)
+boot = boot.decode()
+
+if(boot[:2] == "ls"):
   boot = "BIOS"
 else:
   boot = "UEFI"
