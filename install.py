@@ -2,7 +2,7 @@
 
 import os, re, subprocess
 
-rows, columns = os.popen('stty size', 'r').read().split()
+rows, columns = os.popen("stty size", "r").read().split()
 separator = "-" * int(columns)
 
 print("TALI (Telmo's Arch Linux Installer)")
@@ -23,20 +23,28 @@ text = """phy#0
 
 text2 = ""
 
-match = re.search("Interface (\w+)", text2)
+match_iw = re.search("Interface \w+", text2)
 
-if(match != None):
-  network_interface = (match.group(0).split(" ")[1])
+if(match_iw != None):
+  network_interface = (match_iw.group(0).split(" ")[1])
   print("Wi-Fi interface: {}".format(network_interface))
 else:
   print("No Wi-Fi interface found.")
 
-boot = subprocess.check_output("ls /sys/firmware/efi/efivars; exit 0;", shell=True, stderr=subprocess.STDOUT)
-boot = boot.decode()
+ls_efi = subprocess.check_output("ls /sys/firmware/efi/efivars; exit 0;", shell=True, stderr=subprocess.STDOUT)
+ls_efi = ls_efi.decode()
 
-if(boot[:2] == "ls"):
+if(ls_efi[:2] == "ls"):
   boot = "BIOS"
 else:
   boot = "UEFI"
 
 print(boot)
+
+fdisk = subprocess.check_output("fdisk -l;", shell=True, stderr=subprocess.STDOUT)
+fdisk = fdisk.decode()
+
+disks = re.findall("Disk \/\w+\/\w+", fdisk)
+
+for x in disks:
+  print(x)
