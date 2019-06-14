@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-print("We're assuming you've set your partitions by now and properly mounted on /mnt")
+print("We're assuming you've set your partitions, formated them by now they're properly mounted on /mnt")
 
 import os
 
