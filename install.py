@@ -2,13 +2,9 @@
 
 import os, re, subprocess
 
-rows, columns = os.popen("stty size", "r").read().split()
-separator = "-" * int(columns)
+print("TALI (Telmo's Arch Linux Installer)\n")
 
-print("TALI (Telmo's Arch Linux Installer)")
-print(separator)
-
-text = """phy#0
+text1 = """phy#0
     Interface wlp6s0
         ifindex 3
         wdev 0x1
@@ -22,7 +18,6 @@ text = """phy#0
             0   0   0   0   0   0   0   00"""
 
 text2 = ""
-
 match_iw = re.search("Interface \w+", text2)
 
 if(match_iw != None):
@@ -31,20 +26,31 @@ if(match_iw != None):
 else:
   print("No Wi-Fi interface found.")
 
-ls_efi = subprocess.check_output("ls /sys/firmware/efi/efivars; exit 0;", shell=True, stderr=subprocess.STDOUT)
-ls_efi = ls_efi.decode()
+ls_efi = subprocess.check_output(
+  "ls /sys/firmware/efi/efivars; exit 0;",
+  shell=True, stderr=subprocess.STDOUT).decode()
 
 if(ls_efi[:2] == "ls"):
   boot = "BIOS"
 else:
   boot = "UEFI"
 
-print(boot)
+print("Using {}".format(boot))
 
-fdisk = subprocess.check_output("fdisk -l;", shell=True, stderr=subprocess.STDOUT)
-fdisk = fdisk.decode()
+fdisk = subprocess.check_output("fdisk -l;", shell=True, stderr=subprocess.STDOUT).decode()
 
 disks = re.findall("Disk \/\w+\/\w+", fdisk)
 
 for x in disks:
   print(x)
+
+print("Setting keyboard layout to 'br-abnt2'")
+os.system("loadkeys br-abnt2")
+
+print("Writing brazilian mirrors to Pacman's mirrorlist.")
+os.system("wget -qO- 'https://www.archlinux.org/mirrorlist/?country=BR&use_mirror_status=on' | sed 's/#S/S/g' | sed '/## Brazil/d' > /etc/pacman.d/mirrorlist")
+
+print("Setting timezone to America/Sao_Paulo")
+os.system("timedatectl set-ntp true")
+os.system("timedatectl set-timezone America/Sao_Paulo")
+
