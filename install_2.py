@@ -7,4 +7,5 @@ import os
 os.system("pacstrap /mnt base")
 os.system("pacstrap /mnt python wget")
 os.system("genfstab -U /mnt >> /mnt/etc/fstab")
+os.system("cp /root/install_3 /mnt")
 os.system("arch-chroot /mnt")
