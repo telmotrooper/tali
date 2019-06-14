@@ -12,3 +12,7 @@ os.system("echo 'KEYMAP=br-abnt2' > /etc/vconsole.conf")
 
 hostname = input("What should be this computer's name?")
 os.system("echo '{}' > /etc/hostname".format(hostname))
+os.system("pacman -S ttf-bitstream-vera gdm cinnamon")
+os.system("systemctl enable gdm")
+
+# gotta set root password yet
