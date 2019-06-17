@@ -13,7 +13,7 @@ os.system("echo 'KEYMAP=br-abnt2' > /etc/vconsole.conf")
 hostname = input("Set your computer's name: ")
 os.system("echo '{}' > /etc/hostname".format(hostname))
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
-  "gdm cinnamon gnome-terminal firefox gnome-system-monitor"
+  "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
   "arc-gtk-theme papirus-icon-theme")
 os.system("systemctl enable gdm")
 os.system("systemctl enable NetworkManager")
