@@ -37,12 +37,7 @@ else:
 
 print("Using {}".format(boot))
 
-fdisk = subprocess.check_output("fdisk -l;", shell=True, stderr=subprocess.STDOUT).decode()
-
-disks = re.findall("Disk \/\w+\/\w+", fdisk)
-
-for x in disks:
-  print(x)
+os.system("fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'")
 
 print("Setting keyboard layout to 'br-abnt2'")
 os.system("loadkeys br-abnt2")

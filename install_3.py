@@ -14,7 +14,7 @@ hostname = input("Set your computer's name: ")
 os.system("echo '{}' > /etc/hostname".format(hostname))
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
-  "arc-gtk-theme papirus-icon-theme")
+  "arc-gtk-theme papirus-icon-theme zsh")
 os.system("systemctl enable gdm")
 os.system("systemctl enable NetworkManager")
 print("Set the root password: ")
@@ -25,6 +25,9 @@ print("Set the password for {}".format(username))
 os.system("passwd {}".format(username))
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
+
+os.system("git clone https://aur.archlinux.org/yay.git")
+os.system("cd yay && makepkg -si && cd .. && rm yay")
 
 ls_efi = subprocess.check_output(
   "ls /sys/firmware/efi/efivars; exit 0;",
