@@ -10,9 +10,17 @@ os.system("locale-gen")
 os.system("echo 'LANG=en_US.UTF-8' > /etc/locale.conf")
 os.system("echo 'KEYMAP=br-abnt2' > /etc/vconsole.conf")
 
-hostname = input("What should be this computer's name?")
+hostname = input("Set your computer's name: ")
 os.system("echo '{}' > /etc/hostname".format(hostname))
 os.system("pacman -S ttf-bitstream-vera gdm cinnamon")
 os.system("systemctl enable gdm")
+print("Set the root password: ")
+os.system("passwd")
+username = input("Set your username: ")
+os.system("useradd -m -G wheel -s /bin/bash {}".format(username))
+print("Set the password for {}".format(username))
+os.system("passwd {}".format(username))
+os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
+os.system("mv /etc/sudoers_new /etc/sudoers")
 
 # gotta set root password yet
