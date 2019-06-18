@@ -14,7 +14,7 @@ hostname = input("Set your computer's name: ")
 os.system("echo '{}' > /etc/hostname".format(hostname))
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
-  "arc-gtk-theme papirus-icon-theme zsh")
+  "arc-gtk-theme papirus-icon-theme zsh git")
 os.system("systemctl enable gdm")
 os.system("systemctl enable NetworkManager")
 print("Set the root password: ")
@@ -29,10 +29,10 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
 
 # Theme settings
-os.system("gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'")     # Window borders
-os.system("gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus'") # Icons
-os.system("gsettings set org.cinnamon.desktop.interface gtk-theme 'Arc'")      # Controls
-os.system("gsettings set org.cinnamon.theme name 'Arc-Dark'")                  # Desktop
+os.system("su {} && gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'".format(username))     # Window borders
+os.system("su {} && gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus'".format(username)) # Icons
+os.system("su {} && gsettings set org.cinnamon.desktop.interface gtk-theme 'Arc'".format(username))      # Controls
+os.system("su {} && gsettings set org.cinnamon.theme name 'Arc-Dark'".format(username))                  # Desktop
 # The mouse is "org.cinnamon.desktop.interface cursor-theme"
 
 ls_efi = subprocess.check_output(
