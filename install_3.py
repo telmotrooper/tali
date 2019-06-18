@@ -26,8 +26,14 @@ os.system("passwd {}".format(username))
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
-os.system("git clone https://aur.archlinux.org/yay.git")
-os.system("cd yay && makepkg -si && cd .. && rm yay")
+os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
+
+# Theme settings
+os.system("gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'")     # Window borders
+os.system("gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus'") # Icons
+os.system("gsettings set org.cinnamon.desktop.interface gtk-theme 'Arc'")      # Controls
+os.system("gsettings set org.cinnamon.theme name 'Arc-Dark'")                  # Desktop
+# The mouse is "org.cinnamon.desktop.interface cursor-theme"
 
 ls_efi = subprocess.check_output(
   "ls /sys/firmware/efi/efivars; exit 0;",
