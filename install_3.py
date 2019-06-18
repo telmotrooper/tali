@@ -17,7 +17,7 @@ os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "arc-gtk-theme papirus-icon-theme zsh git")
 os.system("systemctl enable gdm")
 os.system("systemctl enable NetworkManager")
-print("Set the root password: ")
+print("Set the root password")
 os.system("passwd")
 username = input("Set your username: ")
 os.system("useradd -m -G wheel -s /bin/bash {}".format(username))
@@ -26,7 +26,7 @@ os.system("passwd {}".format(username))
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
-os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
+# os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
 
 # Theme settings
 os.system("su {} && gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'".format(username))     # Window borders
