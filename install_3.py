@@ -29,10 +29,10 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 # os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
 
 # Theme settings
-os.system("su {} && gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'".format(username))     # Window borders
-os.system("su {} && gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus'".format(username)) # Icons
-os.system("su {} && gsettings set org.cinnamon.desktop.interface gtk-theme 'Arc'".format(username))      # Controls
-os.system("su {} && gsettings set org.cinnamon.theme name 'Arc-Dark'".format(username))                  # Desktop
+os.system("sudo -u {} gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'".format(username))     # Window borders
+os.system("sudo -u {} gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus'".format(username)) # Icons
+os.system("sudo -u {} gsettings set org.cinnamon.desktop.interface gtk-theme 'Arc'".format(username))      # Controls
+os.system("sudo -u {} gsettings set org.cinnamon.theme name 'Arc-Dark'".format(username))                  # Desktop
 # The mouse is "org.cinnamon.desktop.interface cursor-theme"
 
 ls_efi = subprocess.check_output(
