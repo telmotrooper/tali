@@ -26,14 +26,9 @@ os.system("passwd {}".format(username))
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
-# os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
+os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\"".format(username))
 
-# Theme settings
-os.system("sudo -u {} gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'".format(username))     # Window borders
-os.system("sudo -u {} gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus'".format(username)) # Icons
-os.system("sudo -u {} gsettings set org.cinnamon.desktop.interface gtk-theme 'Arc'".format(username))      # Controls
-os.system("sudo -u {} gsettings set org.cinnamon.theme name 'Arc-Dark'".format(username))                  # Desktop
-# The mouse is "org.cinnamon.desktop.interface cursor-theme"
+# os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
 
 ls_efi = subprocess.check_output(
   "ls /sys/firmware/efi/efivars; exit 0;",

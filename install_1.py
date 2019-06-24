@@ -49,4 +49,4 @@ print("Setting timezone to America/Sao_Paulo")
 os.system("timedatectl set-ntp true")
 os.system("timedatectl set-timezone America/Sao_Paulo")
 
-print("Please, set your partitions now, format and mount them on /mnt. When you're done, run 'install_2.py'")
+print("Please, set your partitions now (try parted), format and mount them on /mnt. When you're done, run 'install_2.py'")
