@@ -4,7 +4,7 @@ import os, subprocess
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
-  "arc-gtk-theme papirus-icon-theme zsh git go ttf-droid xorg-xkill")
+  "arc-gtk-theme papirus-icon-theme zsh git go ttf-droid xorg-xkill neofetch")
 
 os.system("systemctl enable gdm")
 os.system("systemctl enable NetworkManager")
