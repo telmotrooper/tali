@@ -13,5 +13,5 @@ You'll need an internet connection to use this script, if you need to use Wi-Fi 
 Then, download the script and run it:
 
 ```
-wget -q https://raw.githubusercontent.com/telmotrooper/tali/master/tali.tar.gz && tar xf tali.tar.gz
+pacman -Sy git && git clone https://github.com/telmotrooper/tali
 ```

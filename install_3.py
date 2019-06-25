@@ -31,6 +31,12 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 
 os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"".format(username))
 
+# Build "yay" as user, since "makepkg" cannot be executed as "sudo"
+os.system("sudo -u {} sh -c \"git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s)\"".format(username))
+
+# Install yay
+os.system("pacman -S /home/{}/yay/yay-*.pkg.tar.xz")
+
 # os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
 
 ls_efi = subprocess.check_output(
