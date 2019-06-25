@@ -6,6 +6,9 @@ os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
   "arc-gtk-theme papirus-icon-theme zsh git")
 
+os.system("systemctl enable gdm")
+os.system("systemctl enable NetworkManager")
+
 os.system("ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime")
 os.system("hwclock --systohc")
 os.system("cat /etc/locale.gen | sed 's/#en_US.UTF-8/en_US.UTF-8/g' > /locale.gen")
@@ -16,8 +19,7 @@ os.system("echo 'KEYMAP=br-abnt2' > /etc/vconsole.conf")
 
 hostname = input("Set your computer's name: ")
 os.system("echo '{}' > /etc/hostname".format(hostname))
-os.system("systemctl enable gdm")
-os.system("systemctl enable NetworkManager")
+
 print("Set the root password")
 os.system("passwd")
 username = input("Set your username: ")
