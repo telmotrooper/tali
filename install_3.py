@@ -35,7 +35,7 @@ os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/rob
 os.system("sudo -u {} sh -c \"git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s)\"".format(username))
 
 # Install yay
-os.system("pacman -S /home/{}/yay/yay-*.pkg.tar.xz")
+os.system("pacman -S /home/{}/yay/yay-*.pkg.tar.xz".format(username))
 
 # os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
 
