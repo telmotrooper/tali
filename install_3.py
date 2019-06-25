@@ -4,7 +4,7 @@ import os, subprocess
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
-  "arc-gtk-theme papirus-icon-theme zsh git")
+  "arc-gtk-theme papirus-icon-theme zsh git go ttf-droid xorg-xkill")
 
 os.system("systemctl enable gdm")
 os.system("systemctl enable NetworkManager")
@@ -35,7 +35,7 @@ os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/rob
 os.system("sudo -u {} sh -c \"cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s\"".format(username))
 
 # Install yay
-os.system("pacman -U /home/{}/yay/yay-*.pkg.tar.xz".format(username))
+os.system("pacman -U /home/{}/yay/yay-*.pkg.tar.xz --noconfirm".format(username))
 
 os.system("rm -rf /home/{}/yay/".format(username))
 
