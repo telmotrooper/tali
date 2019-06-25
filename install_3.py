@@ -33,10 +33,10 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"".format(username))
 
 # Install "zsh-autosuggestions"
-os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\"".format(username))
+os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\"".format(username))
 
 # Install "zsh-syntax-highlighting"
-os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting\"".format(username))
+os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\"".format(username))
 
 # Build "yay" as user, since "makepkg" cannot be executed as "sudo"
 os.system("sudo -u {} sh -c \"cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s\"".format(username))
