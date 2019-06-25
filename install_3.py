@@ -32,12 +32,12 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"".format(username))
 
 # Build "yay" as user, since "makepkg" cannot be executed as "sudo"
-os.system("sudo -u {} sh -c \"git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s)\"".format(username))
+os.system("sudo -u {} sh -c \"cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s\"".format(username))
 
 # Install yay
-os.system("pacman -S /home/{}/yay/yay-*.pkg.tar.xz".format(username))
+os.system("pacman -U /home/{}/yay/yay-*.pkg.tar.xz".format(username))
 
-# os.system("git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm")
+os.system("rm -rf /home/{}/yay/".format(username))
 
 ls_efi = subprocess.check_output(
   "ls /sys/firmware/efi/efivars; exit 0;",
@@ -58,3 +58,5 @@ else:
   os.system("grub-install --target=i386-pc {}".format(disk))
 
 os.system("grub-mkconfig -o /boot/grub/grub.cfg")
+
+os.system("rm install_3.py")
