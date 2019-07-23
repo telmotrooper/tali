@@ -13,13 +13,13 @@ swap_end = 101 + int(ram)
 print("The disks available are: ")
 os.system("fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'")
 disk = input("Which disk should be partitioned? ")
-os.system(f
-  "parted --script {disk} \ " +
-  "mklabel msdos \ " +
-  "mkpart primary 1MiB 101MiB \ " +
-  "set 1 boot on \ " +
-  "mkpart primary linux-swap 101MiB {swap_end} \ " +
-  "mkpart primary 101MiB 100%")
+os.system(f"""
+  parted --script {disk} \
+  mklabel msdos \
+  mkpart primary 1MiB 101MiB \
+  set 1 boot on \
+  mkpart primary linux-swap 101MiB {swap_end} \
+  mkpart primary 101MiB 100%""")
 
 print("--- Formatting partitions ---")
 os.system("mkfs.ext4 /dev/sda1")
