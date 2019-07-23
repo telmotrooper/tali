@@ -28,6 +28,6 @@ os.system("swapon /dev/sda2")
 os.system("mkfs.ext4 /dev/sda3")
 
 print("--- Mounting partitions ---")
-os.system("mount /dev/sda2 /mnt")
+os.system("mount /dev/sda3 /mnt")
 os.system("mkdir /mnt/boot")
 os.system("mount /dev/sda1 /mnt/boot")
