@@ -38,8 +38,8 @@ while(password1 != password2):
   if password1 != password2:
     print("The passwords don't match.")
 
-os.system(f"passwd root {password1}")
-os.system(f"passwd {username} {password1}")
+os.system(f"echo root:{password1} | chpasswd")
+os.system(f"echo {username}:{password1} | chpasswd")
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
