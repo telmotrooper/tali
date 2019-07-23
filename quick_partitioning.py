@@ -18,8 +18,8 @@ os.system(f"""
   mklabel msdos \
   mkpart primary 1MiB 101MiB \
   set 1 boot on \
-  mkpart primary linux-swap 101MiB {swap_end} \
-  mkpart primary 101MiB 100%""")
+  mkpart primary linux-swap 101MiB {swap_end}MiB \
+  mkpart primary {swap_end}MiB 100%""")
 
 print("--- Formatting partitions ---")
 os.system("mkfs.ext4 /dev/sda1")
