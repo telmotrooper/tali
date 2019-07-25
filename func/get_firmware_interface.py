@@ -1,6 +1,7 @@
 import subprocess
 
 def get_firmware_interface():
+  # We use "exit 0" so we can read the output even if the command fails.
   ls_efi_vars = subprocess.check_output(
     "ls /sys/firmware/efi/efivars; exit 0;",
     shell=True,
