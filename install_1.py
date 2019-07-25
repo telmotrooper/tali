@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import os, re, subprocess
+from func.get_firmware_interface import get_firmware_interface
+
 
 print("TALI (Telmo's Arch Linux Installer)\n")
 
@@ -26,16 +28,7 @@ if(match_iw != None):
 else:
   print("No Wi-Fi interface found.")
 
-ls_efi = subprocess.check_output(
-  "ls /sys/firmware/efi/efivars; exit 0;",
-  shell=True, stderr=subprocess.STDOUT).decode()
-
-if(ls_efi[:2] == "ls"):
-  boot = "BIOS"
-else:
-  boot = "UEFI"
-
-print("Using {}".format(boot))
+print(f"\nYou're running {get_firmware_interface()}")
 
 os.system("fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'")
 
