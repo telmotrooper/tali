@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, re, subprocess
+import os, re
 from func.get_firmware_interface import get_firmware_interface
 
 

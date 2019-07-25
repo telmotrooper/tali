@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-import os, subprocess
+import os
+from func.get_ram_amount import get_ram_amount
 
-ram = subprocess.check_output(
-  "free -m | grep Mem | awk '{print $2}'",
-  shell=True, stderr=subprocess.STDOUT).decode().rstrip()
+ram = get_ram_amount()
 
-print("We detected {} MiB of RAM, a swap partition is gonna be created with this size.".format(ram))
+print(f"We detected {ram} MiB of RAM, a swap partition is gonna be created with this size.".format(ram))
 
 swap_end = 101 + int(ram)
 
