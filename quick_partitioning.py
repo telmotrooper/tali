@@ -2,6 +2,7 @@
 
 import os
 from func.get_ram_amount import get_ram_amount
+from func.select_disk import select_disk
 
 ram = get_ram_amount()
 
@@ -9,9 +10,10 @@ print(f"We detected {ram} MiB of RAM, a swap partition is gonna be created with 
 
 swap_end = 101 + int(ram)
 
-print("The disks available are: ")
-os.system("fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'")
-disk = input("Which disk should be partitioned? ")
+
+print("Which disk should be partitioned? ")
+disk = select_disk()
+
 os.system(f"""
   parted --script {disk} \
   mklabel msdos \
