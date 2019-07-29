@@ -2,6 +2,7 @@
 
 import os, subprocess
 from getpass import getpass
+from func.select_disk import select_disk
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
@@ -70,9 +71,9 @@ if(boot == "UEFI"):
   os.system("pacman -S --noconfirm efibootmgr")
   os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
 else:
-  print("The disks available are: ")
-  os.system("fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'")
-  disk = input("In which disk should GRUB be installed? ")
+  print("Which disk should be partitioned? ")
+  print("In which disk should GRUB be installed?")
+  disk = select_disk()
   os.system("grub-install --target=i386-pc {}".format(disk))
 
 os.system("grub-mkconfig -o /boot/grub/grub.cfg")
