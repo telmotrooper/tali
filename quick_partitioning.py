@@ -3,6 +3,7 @@
 import os
 from func.get_ram_amount import get_ram_amount
 from func.select_disk import select_disk
+from func.get_firmware_interface import get_firmware_interface
 
 ram = get_ram_amount()
 

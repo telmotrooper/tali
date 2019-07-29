@@ -25,5 +25,3 @@ def select_disk():
       continue
 
   return disks_found[user_input-1].split()[0]
-
-select_disk()
