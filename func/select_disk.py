@@ -16,4 +16,4 @@ def select_disk():
       print("Invalid input")
       continue
 
-select_disk()
+  return fake_input[user_input-1].split()[0]
