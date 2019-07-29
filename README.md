@@ -13,5 +13,6 @@ You'll need an internet connection to use this script, if you need to use Wi-Fi 
 Then, download the script and run it:
 
 ```
-pacman -Sy git && git clone https://github.com/telmotrooper/tali
+pacman -Sy git --noconfirm
+git clone https://github.com/telmotrooper/tali
 ```
