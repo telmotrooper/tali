@@ -77,5 +77,3 @@ else:
   os.system("grub-install --target=i386-pc {}".format(disk))
 
 os.system("grub-mkconfig -o /boot/grub/grub.cfg")
-
-os.system("rm install_3.py")
