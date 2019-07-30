@@ -1,19 +1,16 @@
 import subprocess
 
 def get_wireless_devices():
-  wl_devices = subprocess.check_output(
+  iw_dev = subprocess.check_output(
     "iw dev | grep Interface | awk '{print $2}'",
-    shell=True, stderr=subprocess.STDOUT).decode().rstrip()
+    shell=True, stderr=subprocess.STDOUT).decode().rstrip().splitlines()
 
-  if(wl_devices == ""):
+  if(iw_dev == ""):
     return []
   else:
-    temp = []
+    devices = []
   
-    for i, device in enumerate(wl_devices):
-      temp.push(wl_devices)
+    for i, device in enumerate(iw_dev):
+      devices.append(iw_dev)
     
-    return temp
-
-
-print(get_wireless_devices())
+    return devices
