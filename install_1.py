@@ -4,7 +4,11 @@ import os, re
 from func.get_firmware_interface import get_firmware_interface
 from func.get_wireless_devices import get_wireless_devices
 
-print("TALI (Telmo's Arch Linux Installer)\n")
+# ANSI escape codes for formatting in the terminal
+cyan = "\u001b[36m"
+reset = "\u001b[0m"
+
+print(cyan + "TALI (Telmo's Arch Linux Installer)\n" + reset)
 
 wl_devices = get_wireless_devices()
 
