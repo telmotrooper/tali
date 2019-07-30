@@ -2,31 +2,18 @@
 
 import os, re
 from func.get_firmware_interface import get_firmware_interface
-
+from func.get_wireless_devices import get_wireless_devices
 
 print("TALI (Telmo's Arch Linux Installer)\n")
 
-text1 = """phy#0
-    Interface wlp6s0
-        ifindex 3
-        wdev 0x1
-        addr b0:10:41:fe:bd:a7
-        ssid Apartamento
-        type managed
-        channel 11 (2462 MHz), width: 40 MHz, center1: 2452 MHz
-        txpower 16.00 dBm
-        multicast TXQ:
-            qsz-byt qsz-pkt flows   drops   marks   overlmt hashcoltx-bytes tx-packets
-            0   0   0   0   0   0   0   00"""
+wl_devices = get_wireless_devices()
 
-text2 = ""
-match_iw = re.search("Interface \w+", text2)
-
-if(match_iw != None):
-  network_interface = (match_iw.group(0).split(" ")[1])
-  print("Wi-Fi interface: {}".format(network_interface))
+if(wl_devices != []): # at least one wireless device was found
+  print("The following Wi-Fi devices were found:")
+  for device in wl_devices:
+    print(device)
 else:
-  print("No Wi-Fi interface found.")
+  print("No Wi-Fi device found.")
 
 print(f"\nYou're running {get_firmware_interface()}")
 
