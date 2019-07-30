@@ -2,7 +2,7 @@
 
 import os, subprocess
 from getpass import getpass
-from func.select_disk import select_disk
+from func.disk_utils import select_disk
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
