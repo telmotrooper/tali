@@ -3,6 +3,7 @@
 import os, re
 from func.get_firmware_interface import get_firmware_interface
 from func.get_wireless_devices import get_wireless_devices
+from func.disk_utils import get_disks
 
 # ANSI escape codes for formatting in the terminal
 cyan = "\u001b[36m"
@@ -21,7 +22,12 @@ else:
 
 print(f"\nYou're running {get_firmware_interface()}")
 
-os.system("fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'")
+disks = get_disks()
+
+print("\nThe following disks were found:")
+
+for disk in disks:
+  print(disk)
 
 print("Setting keyboard layout to 'br-abnt2'")
 os.system("loadkeys br-abnt2")
