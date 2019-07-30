@@ -11,6 +11,6 @@ def get_wireless_devices():
     devices = []
   
     for i, device in enumerate(iw_dev):
-      devices.append(iw_dev)
+      devices.append(iw_dev[i])
     
     return devices
