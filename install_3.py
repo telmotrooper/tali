@@ -59,6 +59,10 @@ os.system("pacman -U /home/{}/yay/yay-*.pkg.tar.xz --noconfirm".format(username)
 
 os.system("rm -rf /home/{}/yay/".format(username))
 
+# Copy last step script to user desktop and remove the remaining files
+os.system("sudo -u {} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop\"".format(username))
+os.system("rm -rf /tali")
+
 ls_efi = subprocess.check_output(
   "ls /sys/firmware/efi/efivars; exit 0;",
   shell=True, stderr=subprocess.STDOUT).decode()
