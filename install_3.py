@@ -46,9 +46,9 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 
 print("Installing oh-my-zsh and its plugins")
 os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"".format(username))
-os.system("pacman -S --noconfirm zsh-autosuggestions zsh-syntax-highlighting")
-# os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\"".format(username))
-# os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\"".format(username))
+os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\"".format(username))
+os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\"".format(username))
+os.system("sudo -u {} sh -c \"sed -i -e 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc\"".format(username))
 
 print("Installing yay")
 # Build "yay" as user, since "makepkg" cannot be executed as "sudo"
