@@ -44,6 +44,9 @@ os.system(f"echo {username}:{password1} | chpasswd")
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
+# Enable colors for Pacman (and yay)
+os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
+
 print("Installing oh-my-zsh and its plugins")
 os.system(f"sudo -u {username} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"")
 os.system(f"sudo -u {username} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\"")
