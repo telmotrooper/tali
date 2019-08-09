@@ -12,3 +12,6 @@ os.system("gsettings set org.gnome.libgnomekbd.keyboard layouts \"['br']\"")   #
 
 # GNOME Terminal
 os.system("dconf write /org/gnome/terminal/legacy/theme-variant \"'dark'\"")
+
+# Remove script after it's been executed
+os.remove(sys.argv[0])
