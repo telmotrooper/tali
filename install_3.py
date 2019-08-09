@@ -24,10 +24,10 @@ os.system("echo 'LANG=en_US.UTF-8' > /etc/locale.conf")
 os.system("echo 'KEYMAP=br-abnt2' > /etc/vconsole.conf")
 
 hostname = input("Set your computer's name: ")
-os.system("echo '{}' > /etc/hostname".format(hostname))
+os.system(f"echo '{hostname}' > /etc/hostname")
 
 username = input("Set your username: ")
-os.system("useradd -m -G wheel -s /bin/zsh {}".format(username))
+os.system(f"useradd -m -G wheel -s /bin/zsh {username}")
 
 password1 = "1"
 password2 = "2"
@@ -45,23 +45,23 @@ os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
 print("Installing oh-my-zsh and its plugins")
-os.system("sudo -u {} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"".format(username))
-os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\"".format(username))
-os.system("sudo -u {} sh -c \"git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\"".format(username))
-os.system("sudo -u {} sh -c \"sed -i -e 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc\"".format(username))
+os.system(f"sudo -u {username} sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"")
+os.system(f"sudo -u {username} sh -c \"git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\"")
+os.system(f"sudo -u {username} sh -c \"git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\"")
+os.system(f"sudo -u {username} sh -c \"sed -i -e 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc\"")
 
 print("Installing yay")
 # Build "yay" as user, since "makepkg" cannot be executed as "sudo"
-os.system("sudo -u {} sh -c \"cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s\"".format(username))
+os.system(f"sudo -u {username} sh -c \"cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -s\"")
 
 # Install yay
-os.system("pacman -U /home/{}/yay/yay-*.pkg.tar.xz --noconfirm".format(username))
+os.system(f"pacman -U /home/{username}/yay/yay-*.pkg.tar.xz --noconfirm")
 
-os.system("rm -rf /home/{}/yay/".format(username))
+os.system(f"rm -rf /home/{username}/yay/")
 
 # Copy last step script to user desktop and remove the remaining files
-os.system("sudo -u {} sh -c \"mkdir -p ~/Desktop\"")
-os.system("sudo -u {} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"".format(username))
+os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
+os.system(f"sudo -u {username} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"")
 os.system("rm -rf /tali")
 
 ls_efi = subprocess.check_output(
@@ -80,6 +80,6 @@ else:
   print("Which disk should be partitioned? ")
   print("In which disk should GRUB be installed?")
   disk = select_disk()
-  os.system("grub-install --target=i386-pc {}".format(disk))
+  os.system(f"grub-install --target=i386-pc {disk}")
 
 os.system("grub-mkconfig -o /boot/grub/grub.cfg")

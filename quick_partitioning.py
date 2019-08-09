@@ -7,7 +7,7 @@ from func.get_firmware_interface import get_firmware_interface
 
 ram = get_ram_amount()
 
-print(f"We detected {ram} MiB of RAM, a swap partition is gonna be created with this size.".format(ram))
+print(f"We detected {ram} MiB of RAM, a swap partition is gonna be created with this size.")
 
 swap_end_bios = 101 + int(ram)
 swap_end_uefi = 261 + int(ram)
