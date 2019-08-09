@@ -7,6 +7,8 @@ from func.disk_utils import get_disks
 
 # ANSI escape codes for formatting in the terminal
 cyan = "\u001b[36m"
+green = "\u001b[32m"
+yellow = "\u001b[33m"
 reset = "\u001b[0m"
 
 print(cyan + "TALI (Telmo's Arch Linux Installer)\n" + reset)
@@ -39,4 +41,6 @@ print("Setting timezone to America/Sao_Paulo")
 os.system("timedatectl set-ntp true")
 os.system("timedatectl set-timezone America/Sao_Paulo")
 
-print("Please, set your partitions now (try parted), format and mount them on /mnt. When you're done, run 'install_2.py'")
+print("Please, set your partitions now, format and mount them on /mnt. When you're done, run 'install_2.py'")
+print("If all you want to do is to format all partitions and install Arch Linux you can run " + green + "quick_partitioning.py" + reset)
+print("Otherwise, you can format your partitions yourself with " + yellow + "parted" + reset + " or a similar tool")
