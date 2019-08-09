@@ -5,7 +5,7 @@ from getpass import getpass
 from func.disk_utils import select_disk
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
-  "gdm cinnamon gnome-terminal firefox gnome-system-monitor "
+  "gdm cinnamon gnome-terminal firefox gnome-system-monitor gedit "
   "arc-gtk-theme papirus-icon-theme zsh git go ttf-droid xorg-xkill neofetch")
 
 print("Enabling the display manager")
