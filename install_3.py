@@ -80,7 +80,6 @@ if(boot == "UEFI"):
   os.system("pacman -S --noconfirm efibootmgr")
   os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
 else:
-  print("Which disk should be partitioned? ")
   print("In which disk should GRUB be installed?")
   disk = select_disk()
   os.system(f"grub-install --target=i386-pc {disk}")
