@@ -38,15 +38,15 @@ else: # UEFI
 
 print("--- Formatting partitions ---")
 if(fw_interface == "BIOS"):
-  os.system("mkfs.ext4 /dev/sda1")
+  os.system(f"mkfs.ext4 {disk}1")
 else: # UEFI
-  os.system("mkfs.fat -F32 /dev/sda1")
+  os.system(f"mkfs.fat -F32 {disk}1")
 
-os.system("mkswap /dev/sda2")
-os.system("swapon /dev/sda2")
-os.system("mkfs.ext4 /dev/sda3")
+os.system(f"mkswap {disk}2")
+os.system(f"swapon {disk}2")
+os.system(f"mkfs.ext4 {disk}3")
 
 print("--- Mounting partitions ---")
-os.system("mount /dev/sda3 /mnt")
-os.system("mkdir /mnt/boot")
-os.system("mount /dev/sda1 /mnt/boot")
+os.system(f"mount {disk}3 /mnt")
+os.system(f"mkdir /mnt/boot")
+os.system(f"mount {disk}1 /mnt/boot")
