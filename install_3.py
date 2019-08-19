@@ -62,6 +62,13 @@ os.system(f"pacman -U /home/{username}/yay/yay-*.pkg.tar.xz --noconfirm")
 
 os.system(f"rm -rf /home/{username}/yay/")
 
+# Setup GDM to default user to Cinnamon
+os.system(f"""printf 'Language=
+Session=
+XSession=cinnamon
+Icon=cd
+SystemAccount=false\n\n' > /var/lib/AccountsService/users/{username}""")
+
 # Copy last step script to user desktop and remove the remaining files
 os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
 os.system(f"sudo -u {username} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"")
