@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os
+import os, sys
 
 # Cinnamon
 os.system("gsettings set org.cinnamon.desktop.wm.preferences theme 'Arc'")     # Window borders
