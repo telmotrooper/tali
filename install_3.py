@@ -63,10 +63,11 @@ os.system(f"pacman -U /home/{username}/yay/yay-*.pkg.tar.xz --noconfirm")
 os.system(f"rm -rf /home/{username}/yay/")
 
 # Setup GDM to default user to Cinnamon
-os.system(f"""printf 'Language=
+os.system(f"""printf '[User]
+Language=
 Session=
 XSession=cinnamon
-Icon=cd
+Icon=
 SystemAccount=false\n\n' > /var/lib/AccountsService/users/{username}""")
 
 # Copy last step script to user desktop and remove the remaining files
