@@ -9,13 +9,17 @@ ram = get_ram_amount()
 
 print(f"We detected {ram} MiB of RAM, a swap partition is gonna be created with this size.")
 
-swap_end_bios = 101 + int(ram)
-swap_end_uefi = 261 + int(ram)
-
 print("Which disk should be partitioned? ")
 disk = select_disk()
 
 fw_interface = get_firmware_interface()
+
+swap_end = int(ram)
+
+if(fw_interface == "BIOS"):
+  swap_end += 101 # 100 MiB
+else: #UEFI
+  swap_end += 261 # 260 MiB
 
 if(fw_interface == "BIOS"):
   os.system(f"""
@@ -23,8 +27,8 @@ if(fw_interface == "BIOS"):
     mklabel msdos \
     mkpart primary ext4 1MiB 101MiB \
     set 1 boot on \
-    mkpart primary linux-swap 101MiB {swap_end_bios}MiB \
-    mkpart primary ext4 {swap_end_bios}MiB 100%""")
+    mkpart primary linux-swap 101MiB {swap_end}MiB \
+    mkpart primary ext4 {swap_end}MiB 100%""")
 
 else: # UEFI
   os.system(f"""
@@ -32,8 +36,8 @@ else: # UEFI
     mklabel gpt \
     mkpart primary fat32 1MiB 261MiB \
     set 1 esp on \
-    mkpart primary linux-swap 261MiB {swap_end_uefi}MiB \
-    mkpart primary ext4 {swap_end_uefi}MiB 100%""")
+    mkpart primary linux-swap 261MiB {swap_end}MiB \
+    mkpart primary ext4 {swap_end}MiB 100%""")
 
 
 print("--- Formatting partitions ---")
