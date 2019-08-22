@@ -73,12 +73,11 @@ if(use_swap):
   os.system(f"mkfs.ext4 {disk}3")
   print("--- Mounting partitions ---")
   os.system(f"mount {disk}3 /mnt")
-  os.system(f"mkdir /mnt/boot")
 else:
   os.system(f"mkfs.ext4 {disk}2")
   print("--- Mounting partitions ---")
   os.system(f"mount {disk}2 /mnt")
-  os.system(f"mkdir /mnt/boot")
 
-# This step is the same for all combinations
+# These steps are the same for all combinations
+os.system(f"mkdir /mnt/boot")
 os.system(f"mount {disk}1 /mnt/boot")
