@@ -17,6 +17,11 @@ while (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap.lower() 
   if (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap.lower() != ""):
     print("Invalid input")
 
+if (use_swap.lower() == "y" or use_swap.lower() == ""):
+  use_swap = True
+else:
+  use_swap = False
+
 fw_interface = get_firmware_interface()
 
 swap_end = int(ram)
