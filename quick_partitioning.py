@@ -12,12 +12,12 @@ disk = select_disk()
 
 use_swap = "hello"
 
-while (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap.lower() != ""):
+while (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap != ""):
   use_swap = input(f"We detected {ram} MiB of RAM, should we create a swap partition? (Y/n) ")
-  if (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap.lower() != ""):
+  if (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap != ""):
     print("Invalid input")
 
-if (use_swap.lower() == "y" or use_swap.lower() == ""):
+if (use_swap.lower() == "y" or use_swap == ""):
   use_swap = True
 else:
   use_swap = False
