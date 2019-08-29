@@ -32,7 +32,7 @@ print("\nThe following disks were found:")
 for disk in disks:
   print(disk)
 
-print("Setting keyboard layout to " + yellow + "br-abnt2" + reset)
+print("\nSetting keyboard layout to " + yellow + "br-abnt2" + reset)
 os.system("loadkeys br-abnt2")
 
 print("Writing brazilian mirrors to Pacman's mirrorlist.")
