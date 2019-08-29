@@ -21,9 +21,9 @@ if(wl_devices != []): # at least one wireless device was found
   for device in wl_devices:
     print(device)
 else:
-  print("No Wi-Fi device found.")
+  print("No Wi-Fi device found")
 
-print("\nYou're running " + yellow + f"{get_firmware_interface()}" + reset + ".")
+print("\nYou're running " + yellow + f"{get_firmware_interface()}" + reset)
 
 disks = get_disks()
 
@@ -38,7 +38,7 @@ os.system("loadkeys br-abnt2")
 print("Writing brazilian mirrors to Pacman's mirrorlist.")
 os.system("wget -qO- 'https://www.archlinux.org/mirrorlist/?country=BR&use_mirror_status=on' | sed 's/#S/S/g' | sed '/## Brazil/d' > /etc/pacman.d/mirrorlist")
 
-print("Setting timezone to America/Sao_Paulo")
+print("Setting timezone to " + yellow + "America/Sao_Paulo" + reset)
 os.system("timedatectl set-ntp true")
 os.system("timedatectl set-timezone America/Sao_Paulo")
 
