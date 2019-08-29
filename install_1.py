@@ -5,12 +5,7 @@ from func.get_firmware_interface import get_firmware_interface
 from func.get_wireless_devices import get_wireless_devices
 from func.disk_utils import get_disks
 from func.print_logo import print_logo
-
-# ANSI escape codes for formatting in the terminal
-cyan = "\u001b[36m"
-green = "\u001b[32m"
-yellow = "\u001b[33m"
-reset = "\u001b[0m"
+from func.colors import cyan, green, yellow
 
 print_logo()
 
@@ -23,7 +18,7 @@ if(wl_devices != []): # at least one wireless device was found
 else:
   print("No Wi-Fi device found")
 
-print("\nYou're running " + yellow + f"{get_firmware_interface()}" + reset)
+print("\nYou're running " + yellow(f"{get_firmware_interface()}"))
 
 disks = get_disks()
 
@@ -32,17 +27,17 @@ print("\nThe following disks were found:")
 for disk in disks:
   print(disk)
 
-print("\nSetting keyboard layout to " + yellow + "br-abnt2" + reset)
+print("\nSetting keyboard layout to " + yellow("br-abnt2"))
 os.system("loadkeys br-abnt2")
 
 print("Writing brazilian mirrors to Pacman's mirrorlist")
 os.system("wget -qO- 'https://www.archlinux.org/mirrorlist/?country=BR&use_mirror_status=on' | sed 's/#S/S/g' | sed '/## Brazil/d' > /etc/pacman.d/mirrorlist")
 
-print("Setting timezone to " + yellow + "America/Sao_Paulo" + reset)
+print("Setting timezone to " + yellow("America/Sao_Paulo"))
 os.system("timedatectl set-ntp true")
 os.system("timedatectl set-timezone America/Sao_Paulo")
 
-print("\nPlease, set your partitions now, format and mount them on " + yellow + "/mnt" + reset + ".")
-print("If all you want to do is to wipe all partitions and install " + cyan + "Arch Linux" + reset + ", you can run " + green + "quick_partitioning.py" + reset + ".")
-print("Otherwise, you can format your partitions yourself with " + green + "parted" + reset + " or a similar tool.")
-print("\nWhen you're done, run " + green + "install_2.py" + reset + ".\n")
+print("\nPlease, set your partitions now, format and mount them on " + yellow("/mnt") + ".")
+print("If all you want to do is to wipe all partitions and install " + cyan("Arch Linux") + ", you can run " + green("quick_partitioning.py") + ".")
+print("Otherwise, you can format your partitions yourself with " + green("parted") + " or a similar tool.")
+print("\nWhen you're done, run " + green("install_2.py") + ".\n")
