@@ -23,7 +23,7 @@ if(wl_devices != []): # at least one wireless device was found
 else:
   print("No Wi-Fi device found.")
 
-print(f"\nYou're running {get_firmware_interface()}")
+print("\nYou're running " + yellow + f"{get_firmware_interface()}" + reset + ".")
 
 disks = get_disks()
 
@@ -32,7 +32,7 @@ print("\nThe following disks were found:")
 for disk in disks:
   print(disk)
 
-print("Setting keyboard layout to 'br-abnt2'")
+print("Setting keyboard layout to " + yellow + "br-abnt2" + reset)
 os.system("loadkeys br-abnt2")
 
 print("Writing brazilian mirrors to Pacman's mirrorlist.")
