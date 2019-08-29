@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 input("Did you set your partitions, format them and mount them on /mnt?")
 
 import os

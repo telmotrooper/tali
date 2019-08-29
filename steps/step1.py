@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os, re
 from func.get_firmware_interface import get_firmware_interface
 from func.get_wireless_devices import get_wireless_devices

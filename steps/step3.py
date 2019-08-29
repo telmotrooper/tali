@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os, subprocess
 from getpass import getpass
 from func.disk_utils import select_disk
