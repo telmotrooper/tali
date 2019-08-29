@@ -4,6 +4,7 @@ import os, re
 from func.get_firmware_interface import get_firmware_interface
 from func.get_wireless_devices import get_wireless_devices
 from func.disk_utils import get_disks
+from func.print_logo import print_logo
 
 # ANSI escape codes for formatting in the terminal
 cyan = "\u001b[36m"
@@ -11,7 +12,7 @@ green = "\u001b[32m"
 yellow = "\u001b[33m"
 reset = "\u001b[0m"
 
-print(cyan + "TALI (Telmo's Arch Linux Installer)\n" + reset)
+print_logo()
 
 wl_devices = get_wireless_devices()
 
