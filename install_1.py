@@ -35,7 +35,7 @@ for disk in disks:
 print("\nSetting keyboard layout to " + yellow + "br-abnt2" + reset)
 os.system("loadkeys br-abnt2")
 
-print("Writing brazilian mirrors to Pacman's mirrorlist.")
+print("Writing brazilian mirrors to Pacman's mirrorlist")
 os.system("wget -qO- 'https://www.archlinux.org/mirrorlist/?country=BR&use_mirror_status=on' | sed 's/#S/S/g' | sed '/## Brazil/d' > /etc/pacman.d/mirrorlist")
 
 print("Setting timezone to " + yellow + "America/Sao_Paulo" + reset)
