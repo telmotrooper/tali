@@ -42,6 +42,6 @@ print("Setting timezone to " + yellow + "America/Sao_Paulo" + reset)
 os.system("timedatectl set-ntp true")
 os.system("timedatectl set-timezone America/Sao_Paulo")
 
-print("Please, set your partitions now, format and mount them on /mnt. When you're done, run 'install_2.py'")
+print("\nPlease, set your partitions now, format and mount them on /mnt. When you're done, run 'install_2.py'")
 print("If all you want to do is to format all partitions and install Arch Linux you can run " + green + "quick_partitioning.py" + reset)
 print("Otherwise, you can format your partitions yourself with " + yellow + "parted" + reset + " or a similar tool")
