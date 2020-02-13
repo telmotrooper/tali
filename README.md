@@ -15,4 +15,5 @@ Then, download the script and run it:
 ```
 pacman -Sy git --noconfirm
 git clone https://github.com/telmotrooper/tali
+tali/install.py
 ```
