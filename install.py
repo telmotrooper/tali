@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import configparser
+import argparse, configparser
 
 # global variables
 path = "/tmp/tali.ini"
@@ -11,7 +11,15 @@ def write_config_file():
     config.write(config_file)
 
 def main():
+  parser = argparse.ArgumentParser()
+  parser.add_argument("--step", default=0)
+  args = parser.parse_args()
+
   config.read(path)
+
+  if args.step != 0: # if a step was passed as an argument, use it
+    config["DEFAULT"] = { 'Step': args.step }
+    write_config_file()
 
   if config.read(path) == []: # no config file found
     config["DEFAULT"] = { 'Step': '1' }
