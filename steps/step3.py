@@ -22,6 +22,7 @@ os.system("locale-gen")
 os.system("echo 'LANG=en_US.UTF-8' > /etc/locale.conf")
 os.system("echo 'KEYMAP=br-abnt2' > /etc/vconsole.conf")
 
+print("-" * 100)
 hostname = input("Set your computer's name: ")
 os.system(f"echo '{hostname}' > /etc/hostname")
 
@@ -37,6 +38,7 @@ while(password1 != password2):
   
   if password1 != password2:
     print("The passwords don't match.")
+print("-" * 100)
 
 os.system(f"echo root:{password1} | chpasswd")
 os.system(f"echo {username}:{password1} | chpasswd")
