@@ -5,23 +5,14 @@ from func.get_ram_amount import get_ram_amount
 from func.disk_utils import select_disk
 from func.get_firmware_interface import get_firmware_interface
 from func.colors import cyan, green, yellow
+from func.yes_no_dialog import yes_no_dialog
 
 ram = get_ram_amount()
 
 print("Which disk should be partitioned? ")
 disk = select_disk()
 
-use_swap = "hello"
-
-while (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap != ""):
-  use_swap = input(f"We detected {ram} MiB of RAM, should we create a swap partition? (Y/n) ")
-  if (use_swap.lower() != "y" and use_swap.lower() != "n" and use_swap != ""):
-    print("Invalid input")
-
-if (use_swap.lower() == "y" or use_swap == ""):
-  use_swap = True
-else:
-  use_swap = False
+use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap partition?")
 
 fw_interface = get_firmware_interface()
 
