@@ -1,6 +1,6 @@
 from func.colors import yellow
 
-input("Did you set your partitions, format them and mount them on " + yellow("/mnt? "))
+input("Did you set your partitions, format them and mount them on " + yellow("/mnt") + "? ")
 
 import os
 

@@ -36,6 +36,6 @@ os.system("timedatectl set-ntp true")
 os.system("timedatectl set-timezone America/Sao_Paulo")
 
 print("\nPlease, set your partitions now, format and mount them on " + yellow("/mnt") + ".")
-print("If all you want to do is to wipe all partitions and install " + cyan("Arch Linux") + ", you can run " + green("quick_partitioning.py") + ".")
+print("If all you want to do is to wipe all partitions and install " + cyan("Arch Linux") + ", you can run " + green("tali/quick_partitioning.py") + ".")
 print("Otherwise, you can format your partitions yourself with " + green("parted") + " or a similar tool.")
 print("\nWhen you're done, run " + green("install.py") + " again.\n")

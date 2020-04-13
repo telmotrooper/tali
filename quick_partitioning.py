@@ -4,6 +4,7 @@ import os
 from func.get_ram_amount import get_ram_amount
 from func.disk_utils import select_disk
 from func.get_firmware_interface import get_firmware_interface
+from func.colors import cyan, green, yellow
 
 ram = get_ram_amount()
 
@@ -86,3 +87,5 @@ else:
 # These steps are the same for all combinations
 os.system(f"mkdir /mnt/boot")
 os.system(f"mount {disk}1 /mnt/boot")
+
+print("You're all set, run " + green("tali/install.py") + " again to continue installing " + cyan("Arch Linux") + ".")
