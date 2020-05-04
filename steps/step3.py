@@ -4,7 +4,7 @@ from func.disk_utils import select_disk
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor gedit "
-  "arc-gtk-theme papirus-icon-theme zsh git go ttf-droid xorg-xkill "
+  "arc-gtk-theme papirus-icon-theme zsh git go xorg-xkill "
   "neofetch eog evince file-roller nemo-fileroller p7zip")
 
 print("Enabling the display manager")
