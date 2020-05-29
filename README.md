@@ -1,5 +1,7 @@
 # TALI (Telmo's Arch Linux Installer)
 
+![](tali.png)
+
 ## **ATTENTION: This script is not ready for use**
 
 ## Setup
