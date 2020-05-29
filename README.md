@@ -2,8 +2,6 @@
 
 ![](tali.png)
 
-## **ATTENTION: This script is not ready for use**
-
 ## Setup
 
 First of all, boot your [Arch Linux live CD](https://www.archlinux.org/download/).
