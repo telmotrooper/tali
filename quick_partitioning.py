@@ -12,6 +12,8 @@ ram = get_ram_amount()
 print("Which disk should be partitioned? ")
 disk = select_disk()
 
+suffix = "p" if ("nvme" in disk) else "" # NVMe numbers partitions as p1, p2, p3 instead of 1, 2, 3.
+
 use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap partition?")
 
 fw_interface = get_firmware_interface()
@@ -60,23 +62,23 @@ else: # UEFI
 
 print("--- Formatting partitions ---")
 if(fw_interface == "BIOS"):
-  os.system(f"mkfs.ext4 {disk}p1")
+  os.system(f"mkfs.ext4 {disk}{suffix}1")
 else: # UEFI
-  os.system(f"mkfs.fat -F32 {disk}p1")
+  os.system(f"mkfs.fat -F32 {disk}{suffix}1")
 
 if(use_swap):
-  os.system(f"mkswap {disk}p2")
-  os.system(f"swapon {disk}p2")
-  os.system(f"mkfs.ext4 {disk}p3")
+  os.system(f"mkswap {disk}{suffix}2")
+  os.system(f"swapon {disk}{suffix}2")
+  os.system(f"mkfs.ext4 {disk}{suffix}3")
   print("--- Mounting partitions ---")
-  os.system(f"mount {disk}p3 /mnt")
+  os.system(f"mount {disk}{suffix}3 /mnt")
 else:
-  os.system(f"mkfs.ext4 {disk}p2")
+  os.system(f"mkfs.ext4 {disk}{suffix}2")
   print("--- Mounting partitions ---")
-  os.system(f"mount {disk}p2 /mnt")
+  os.system(f"mount {disk}{suffix}2 /mnt")
 
 # These steps are the same for all combinations
 os.system(f"mkdir /mnt/boot")
-os.system(f"mount {disk}p1 /mnt/boot")
+os.system(f"mount {disk}{suffix}1 /mnt/boot")
 
 print("You're all set, run " + green("tali/install.py") + " again to continue installing " + cyan("Arch Linux") + ".")
