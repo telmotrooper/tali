@@ -6,7 +6,7 @@ good_to_go = yes_no_dialog("Did you set your partitions, format them and mount t
 if good_to_go:
   import os
 
-  os.system("pacstrap /mnt base base-devel net-tools xdg-user-dirs")
+  os.system("pacstrap /mnt base base-devel linux linux-firmware net-tools xdg-user-dirs")
   os.system("pacstrap /mnt python wget")
   os.system("genfstab -U /mnt >> /mnt/etc/fstab")
   os.system("cp -r /root/tali /mnt/tali")
