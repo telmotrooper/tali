@@ -60,23 +60,23 @@ else: # UEFI
 
 print("--- Formatting partitions ---")
 if(fw_interface == "BIOS"):
-  os.system(f"mkfs.ext4 {disk}1")
+  os.system(f"mkfs.ext4 {disk}p1")
 else: # UEFI
-  os.system(f"mkfs.fat -F32 {disk}1")
+  os.system(f"mkfs.fat -F32 {disk}p1")
 
 if(use_swap):
-  os.system(f"mkswap {disk}2")
-  os.system(f"swapon {disk}2")
-  os.system(f"mkfs.ext4 {disk}3")
+  os.system(f"mkswap {disk}p2")
+  os.system(f"swapon {disk}p2")
+  os.system(f"mkfs.ext4 {disk}p3")
   print("--- Mounting partitions ---")
-  os.system(f"mount {disk}3 /mnt")
+  os.system(f"mount {disk}p3 /mnt")
 else:
-  os.system(f"mkfs.ext4 {disk}2")
+  os.system(f"mkfs.ext4 {disk}p2")
   print("--- Mounting partitions ---")
-  os.system(f"mount {disk}2 /mnt")
+  os.system(f"mount {disk}p2 /mnt")
 
 # These steps are the same for all combinations
 os.system(f"mkdir /mnt/boot")
-os.system(f"mount {disk}1 /mnt/boot")
+os.system(f"mount {disk}p1 /mnt/boot")
 
 print("You're all set, run " + green("tali/install.py") + " again to continue installing " + cyan("Arch Linux") + ".")
