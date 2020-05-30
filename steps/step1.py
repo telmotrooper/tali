@@ -1,9 +1,9 @@
 import os, re
-from func.get_firmware_interface import get_firmware_interface
-from func.get_wireless_devices import get_wireless_devices
-from func.disk_utils import get_disks
-from func.print_logo import print_logo
-from func.colors import cyan, green, yellow
+from utils.get_firmware_interface import get_firmware_interface
+from utils.get_wireless_devices import get_wireless_devices
+from utils.disk_utils import get_disks
+from utils.print_logo import print_logo
+from utils.colors import cyan, green, yellow
 
 print_logo()
 

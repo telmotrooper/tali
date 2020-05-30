@@ -1,6 +1,6 @@
 import os, subprocess
 from getpass import getpass
-from func.disk_utils import select_disk
+from utils.disk_utils import select_disk
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera ttf-droid noto-fonts-emoji grub "
   "gdm cinnamon gnome-terminal firefox gnome-system-monitor gedit "

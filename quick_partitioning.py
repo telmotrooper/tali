@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import os
-from func.get_ram_amount import get_ram_amount
-from func.disk_utils import select_disk
-from func.get_firmware_interface import get_firmware_interface
-from func.colors import cyan, green, yellow
-from func.yes_no_dialog import yes_no_dialog
+from utils.get_ram_amount import get_ram_amount
+from utils.disk_utils import select_disk
+from utils.get_firmware_interface import get_firmware_interface
+from utils.colors import cyan, green, yellow
+from utils.yes_no_dialog import yes_no_dialog
 
 ram = get_ram_amount()
 

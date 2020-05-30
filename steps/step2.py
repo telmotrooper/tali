@@ -1,5 +1,5 @@
-from func.colors import cyan, green, yellow
-from func.yes_no_dialog import yes_no_dialog
+from utils.colors import cyan, green, yellow
+from utils.yes_no_dialog import yes_no_dialog
 
 good_to_go = yes_no_dialog("Did you set your partitions, format them and mount them on " + yellow("/mnt") + "?")
 
