@@ -1,4 +1,5 @@
 from utils.colors import cyan, green, yellow
+from utils.select_kernel import select_kernel
 from utils.yes_no_dialog import yes_no_dialog
 
 good_to_go = yes_no_dialog("Did you set your partitions, format them and mount them on " + yellow("/mnt") + "?")
@@ -6,7 +7,9 @@ good_to_go = yes_no_dialog("Did you set your partitions, format them and mount t
 if good_to_go:
   import os
 
-  os.system("pacstrap /mnt base base-devel linux linux-firmware net-tools xdg-user-dirs")
+  kernel_packages = select_kernel()
+
+  os.system(f"pacstrap /mnt base base-devel {kernel_packages} linux-firmware net-tools xdg-user-dirs")
   os.system("pacstrap /mnt python wget")
   os.system("genfstab -U /mnt >> /mnt/etc/fstab")
   os.system("cp -r /root/tali /mnt/tali")
