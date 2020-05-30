@@ -14,7 +14,7 @@ disk = select_disk()
 
 suffix = "p" if ("nvme" in disk) else "" # NVMe numbers partitions as p1, p2, p3 instead of 1, 2, 3.
 
-use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap partition?")
+use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap partition of the same size?")
 
 fw_interface = get_firmware_interface()
 
