@@ -7,6 +7,7 @@ good_to_go = yes_no_dialog("Did you set your partitions, format them and mount t
 if good_to_go:
   import os
 
+  print()
   kernel_packages = select_kernel()
 
   os.system(f"pacstrap /mnt base base-devel {kernel_packages} linux-firmware net-tools xdg-user-dirs")
