@@ -87,7 +87,7 @@ else:
   boot = "UEFI"
 
 if(boot == "UEFI"):
-  use_refind = yes_no_dialog(f"Since you're on UEFI, you can opt for rEFInd instead of GRUB. Would you like to do that?")
+  use_refind = yes_no_dialog("Since you're on UEFI, you can opt for rEFInd instead of GRUB. Would you like to do that?")
 
   if(use_refind):
     os.system("pacman -S --noconfirm refind")
