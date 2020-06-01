@@ -87,14 +87,14 @@ else:
   boot = "UEFI"
 
 if(boot == "UEFI"):
-  use_refind = yes_no_dialog("Since you're on UEFI, you can opt for rEFInd instead of GRUB. Would you like to do that?")
+  # use_refind = yes_no_dialog("Since you're on UEFI, you can opt for rEFInd instead of GRUB. Would you like to do that?")
 
-  if(use_refind):
-    os.system("pacman -S --noconfirm refind")
-    os.system("refind-install")
-  else:
-    os.system("pacman -S --noconfirm efibootmgr")
-    os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
+  # if(use_refind):
+  #   os.system("pacman -S --noconfirm refind")
+  #   os.system("refind-install")
+  # else:
+  os.system("pacman -S --noconfirm efibootmgr")
+  os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
 else:
   print("In which disk should GRUB be installed?")
   disk = select_disk()
