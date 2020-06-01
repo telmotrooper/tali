@@ -4,7 +4,7 @@ from utils.disk_utils import select_disk
 from utils.yes_no_dialog import yes_no_dialog
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera ttf-droid noto-fonts-emoji grub "
-  "gdm cinnamon gnome-terminal firefox gnome-screenshot gnome-system-monitor gedit "
+  "gdm cinnamon gnome-terminal firefox ffmpegthumbnailer gnome-screenshot gnome-system-monitor gedit "
   "arc-gtk-theme papirus-icon-theme zsh git go xorg-xkill "
   "neofetch eog evince file-roller nemo-fileroller p7zip")
 
