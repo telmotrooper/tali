@@ -30,7 +30,7 @@ os.system("loadkeys br-abnt2")
 
 print("Writing brazilian mirrors to Pacman's mirrorlist")
 os.system("pacman -S reflector --noconfirm")
-os.system("reflector --country Brazil --age 12 --sort rate --save /etc/pacman.d/mirrorlist")
+os.system("reflector --country Brazil --age 12 --sort rate --save /etc/pacman.d/mirrorlist > /dev/null")
 #os.system("wget -qO- 'https://www.archlinux.org/mirrorlist/?country=BR&use_mirror_status=on' | sed 's/#S/S/g' | sed '/## Brazil/d' > /etc/pacman.d/mirrorlist")
 
 print("Setting timezone to " + yellow("America/Sao_Paulo"))
