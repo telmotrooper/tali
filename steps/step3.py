@@ -1,6 +1,7 @@
 import os, subprocess
 from getpass import getpass
 from utils.disk_utils import select_disk
+from utils.yes_no_dialog import yes_no_dialog
 
 os.system("pacman -S --noconfirm ttf-bitstream-vera ttf-droid noto-fonts-emoji grub "
   "gdm cinnamon gnome-terminal firefox gnome-screenshot gnome-system-monitor gedit "
@@ -86,8 +87,14 @@ else:
   boot = "UEFI"
 
 if(boot == "UEFI"):
-  os.system("pacman -S --noconfirm efibootmgr")
-  os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
+  use_refind = yes_no_dialog("Since you're on UEFI, you can opt for rEFInd instead of GRUB. Would you like to do that?")
+
+  if(use_refind):
+    os.system("pacman -S --noconfirm refind")
+    os.system("refind-install")
+  else:
+    os.system("pacman -S --noconfirm efibootmgr")
+    os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
 else:
   print("In which disk should GRUB be installed?")
   disk = select_disk()
