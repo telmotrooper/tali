@@ -14,6 +14,7 @@ if good_to_go:
   os.system("pacstrap /mnt python wget")
   os.system("genfstab -U /mnt >> /mnt/etc/fstab")
   os.system("cp -r /root/tali /mnt/tali")
+  os.system("cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist")
   os.system("arch-chroot /mnt python tali/install.py --step 3")
 else:
   # TODO: Make this a function, since this dialog is also used in step 1.
