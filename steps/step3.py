@@ -3,10 +3,16 @@ from getpass import getpass
 from utils.disk_utils import select_disk
 from utils.yes_no_dialog import yes_no_dialog
 
-os.system("pacman -S --noconfirm ttf-bitstream-vera ttf-droid noto-fonts-emoji grub "
-  "gdm cinnamon gnome-terminal firefox ffmpegthumbnailer gnome-screenshot gnome-system-monitor gedit "
-  "arc-gtk-theme papirus-icon-theme zsh git go xorg-xkill "
-  "neofetch eog evince file-roller nemo-fileroller p7zip os-prober")
+# List of packages
+dvd = "libdvdread libdvdcss libdvdnav vlc"
+fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
+gnome_apps = "gnome-terminal gnome-screenshot gnome-system-monitor gedit eog evince file-roller"
+themes = "arc-gtk-theme papirus-icon-theme"
+
+os.system("pacman -S --noconfirm  grub " + fonts + " " + gnome_apps + " " +
+  "gdm cinnamon firefox ffmpegthumbnailer " + themes + " " +
+  "zsh git go xorg-xkill "
+  "neofetch nemo-fileroller p7zip os-prober " + dvd)
 
 print("Enabling the display manager")
 os.system("systemctl enable gdm")
