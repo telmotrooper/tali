@@ -67,7 +67,7 @@ print("Installing yay")
 os.system(f"sudo -u {username} sh -c \"cd ~ && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -s\"")
 
 # Install yay
-os.system(f"pacman -U /home/{username}/yay-bin/yay-*.pkg.tar.xz --noconfirm")
+os.system(f"pacman -U /home/{username}/yay-bin/yay-*.pkg.tar.zst --noconfirm")
 
 os.system(f"rm -rf /home/{username}/yay-bin/")
 
