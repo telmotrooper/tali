@@ -10,7 +10,7 @@ gnome_apps = "gnome-terminal gnome-screenshot gnome-system-monitor gedit eog evi
 misc = "webp-pixbuf-loader" # WebP support
 themes = "arc-gtk-theme papirus-icon-theme"
 
-os.system("pacman -S --noconfirm  grub " + fonts + " " + gnome_apps + " " +
+os.system("pacman -S --noconfirm  grub os-prober " + fonts + " " + gnome_apps + " " +
   "gdm cinnamon firefox ffmpegthumbnailer " + themes + " " +
   "zsh git go xorg-xkill "
   "neofetch nemo-fileroller p7zip os-prober " + dvd + " " + misc)
@@ -94,12 +94,6 @@ else:
   boot = "UEFI"
 
 if(boot == "UEFI"):
-  # use_refind = yes_no_dialog("Since you're on UEFI, you can opt for rEFInd instead of GRUB. Would you like to do that?")
-
-  # if(use_refind):
-  #   os.system("pacman -S --noconfirm refind")
-  #   os.system("refind-install")
-  # else:
   os.system("pacman -S --noconfirm efibootmgr")
   os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
 else:
