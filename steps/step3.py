@@ -6,7 +6,7 @@ from utils.yes_no_dialog import yes_no_dialog
 # List of packages
 dvd = "libdvdread libdvdcss libdvdnav vlc"
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
-gnome_apps = "gnome-terminal gnome-screenshot gnome-system-monitor gedit eog evince file-roller"
+gnome_apps = "gnome-terminal gnome-screenshot gnome-system-monitor gnome-calculator gedit eog evince file-roller"
 misc = "webp-pixbuf-loader" # WebP support
 themes = "arc-gtk-theme papirus-icon-theme"
 
