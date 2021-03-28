@@ -1,3 +1,5 @@
+from utils.colors import cyan, green, yellow
+
 def suggest_partitioning():
   print("\nPlease, set your partitions now, format and mount them on " + yellow("/mnt") + ".")
   print("If all you want to do is to wipe all partitions and install " + cyan("Arch Linux") + ", you can run " + green("tali/quick_partitioning.py") + ".")
