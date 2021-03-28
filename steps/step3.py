@@ -1,4 +1,4 @@
-import os, subprocess
+import os, subprocess, sys
 from getpass import getpass
 from utils.disk_utils import select_disk
 from utils.yes_no_dialog import yes_no_dialog
@@ -28,6 +28,11 @@ else:
   os.system(f"grub-install --target=i386-pc {disk}")
 
 os.system("grub-mkconfig -o /boot/grub/grub.cfg")
+
+should_proceed = yes_no_dialog("Proceed?")
+
+if !should_proceed:
+  sys.exit()
 
 # Remaining setup
 os.system(f"pacman -S --noconfirm {fonts} gnome-terminal gdm cinnamon firefox {themes} zsh git go")
