@@ -31,7 +31,7 @@ os.system("grub-mkconfig -o /boot/grub/grub.cfg")
 
 should_proceed = yes_no_dialog("Proceed?")
 
-if !should_proceed:
+if not should_proceed:
   sys.exit()
 
 # Remaining setup
