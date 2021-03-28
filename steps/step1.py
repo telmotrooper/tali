@@ -7,11 +7,11 @@ from utils.colors import cyan, green, yellow
 
 print_logo()
 
-wl_devices = get_wireless_devices()
+wireless_devices = get_wireless_devices()
 
-if(wl_devices != []): # at least one wireless device was found
+if(wireless_devices != []): # at least one wireless device was found
   print("The following Wi-Fi devices were found:")
-  for device in wl_devices:
+  for device in wireless_devices:
     print(device)
 else:
   print("No Wi-Fi device found")
