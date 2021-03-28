@@ -5,6 +5,10 @@ from utils.disk_utils import get_disks
 from utils.print_logo import print_logo
 from utils.colors import cyan, green, yellow
 
+country = "Brazil"
+keyboard = "br-abnt2"
+timezone = "America/Sao_Paulo"
+
 print_logo()
 
 wireless_devices = get_wireless_devices()
@@ -25,16 +29,15 @@ print("\nThe following disks were found:")
 for disk in disks:
   print(disk)
 
-print("\nSetting keyboard layout to " + yellow("br-abnt2"))
-os.system("loadkeys br-abnt2")
+print("\nSetting keyboard layout to " + yellow(keyboard))
+os.system(f"loadkeys {keyboard}")
 
-print("Writing brazilian mirrors to Pacman's mirrorlist")
-os.system("reflector --verbose --threads 4 --protocol http,https --country Brazil --age 12 --sort rate --save /etc/pacman.d/mirrorlist")
-#os.system("wget -qO- 'https://www.archlinux.org/mirrorlist/?country=BR&use_mirror_status=on' | sed 's/#S/S/g' | sed '/## Brazil/d' > /etc/pacman.d/mirrorlist")
+print(f"Writing mirrors from {country} to the Pacman mirrorlist")
+os.system(f"reflector --verbose --threads 4 --protocol http,https --country {country} --age 12 --sort rate --save /etc/pacman.d/mirrorlist")
 
-print("Setting timezone to " + yellow("America/Sao_Paulo"))
+print("Setting timezone to " + yellow(timezone))
 os.system("timedatectl set-ntp true")
-os.system("timedatectl set-timezone America/Sao_Paulo")
+os.system(f"timedatectl set-timezone {timezone}")
 
 print("\nPlease, set your partitions now, format and mount them on " + yellow("/mnt") + ".")
 print("If all you want to do is to wipe all partitions and install " + cyan("Arch Linux") + ", you can run " + green("tali/quick_partitioning.py") + ".")
