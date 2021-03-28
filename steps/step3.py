@@ -4,16 +4,10 @@ from utils.disk_utils import select_disk
 from utils.yes_no_dialog import yes_no_dialog
 
 # List of packages
-dvd = "libdvdread libdvdcss libdvdnav vlc"
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
-gnome_apps = "gnome-terminal gnome-screenshot gnome-system-monitor gnome-calculator gedit eog evince file-roller"
-misc = "webp-pixbuf-loader" # WebP support
 themes = "arc-gtk-theme papirus-icon-theme"
 
-os.system("pacman -S --noconfirm  grub os-prober " + fonts + " " + gnome_apps + " " +
-  "gdm cinnamon firefox ffmpegthumbnailer " + themes + " " +
-  "zsh git go xorg-xkill "
-  "neofetch nemo-fileroller p7zip os-prober " + dvd + " " + misc)
+os.system(f"pacman -S --noconfirm  grub os-prober {fonts} gnome-terminal gdm cinnamon firefox {themes} zsh git go")
 
 print("Enabling the display manager")
 os.system("systemctl enable gdm")
@@ -82,6 +76,7 @@ SystemAccount=false\n\n' > /var/lib/AccountsService/users/{username}""")
 # Copy last step script to user desktop and remove the remaining files
 os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
 os.system(f"sudo -u {username} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"")
+os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install.py ~/Desktop/\"")
 os.system("rm -rf /tali")
 
 ls_efi = subprocess.check_output(
