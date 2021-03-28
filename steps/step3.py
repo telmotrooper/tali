@@ -7,7 +7,30 @@ from utils.yes_no_dialog import yes_no_dialog
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 themes = "arc-gtk-theme papirus-icon-theme"
 
-os.system(f"pacman -S --noconfirm  grub os-prober {fonts} gnome-terminal gdm cinnamon firefox {themes} zsh git go")
+# Installing boot loader
+os.system(f"pacman -S --noconfirm  grub os-prober")
+
+ls_efi = subprocess.check_output(
+  "ls /sys/firmware/efi/efivars; exit 0;",
+  shell=True, stderr=subprocess.STDOUT).decode()
+
+if(ls_efi[:2] == "ls"):
+  boot = "BIOS"
+else:
+  boot = "UEFI"
+
+if(boot == "UEFI"):
+  os.system("pacman -S --noconfirm efibootmgr")
+  os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
+else:
+  print("In which disk should GRUB be installed?")
+  disk = select_disk()
+  os.system(f"grub-install --target=i386-pc {disk}")
+
+os.system("grub-mkconfig -o /boot/grub/grub.cfg")
+
+# Remaining setup
+os.system(f"pacman -S --noconfirm {fonts} gnome-terminal gdm cinnamon firefox {themes} zsh git go")
 
 print("Enabling the display manager")
 os.system("systemctl enable gdm")
@@ -63,22 +86,3 @@ os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
 os.system(f"sudo -u {username} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"")
 os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install.py ~/Desktop/\"")
 os.system("rm -rf /tali")
-
-ls_efi = subprocess.check_output(
-  "ls /sys/firmware/efi/efivars; exit 0;",
-  shell=True, stderr=subprocess.STDOUT).decode()
-
-if(ls_efi[:2] == "ls"):
-  boot = "BIOS"
-else:
-  boot = "UEFI"
-
-if(boot == "UEFI"):
-  os.system("pacman -S --noconfirm efibootmgr")
-  os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
-else:
-  print("In which disk should GRUB be installed?")
-  disk = select_disk()
-  os.system(f"grub-install --target=i386-pc {disk}")
-
-os.system("grub-mkconfig -o /boot/grub/grub.cfg")
