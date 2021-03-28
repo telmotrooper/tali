@@ -5,10 +5,8 @@ from utils.yes_no_dialog import yes_no_dialog
 
 # List of packages
 dvd = "libdvdread libdvdcss libdvdnav vlc"
-fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 gnome_apps = "gnome-screenshot gnome-system-monitor gnome-calculator gedit eog evince file-roller"
 misc = "webp-pixbuf-loader" # WebP support
-themes = "arc-gtk-theme papirus-icon-theme"
 
 os.system(f"pacman -S --noconfirm {gnome_apps} ffmpegthumbnailer xorg-xkill neofetch nemo-fileroller p7zip {dvd} {misc}")
 
