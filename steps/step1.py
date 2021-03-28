@@ -1,9 +1,10 @@
 import os, re
+from utils.colors import cyan, green, yellow
 from utils.get_firmware_interface import get_firmware_interface
 from utils.get_wireless_devices import get_wireless_devices
 from utils.disk_utils import get_disks
 from utils.print_logo import print_logo
-from utils.colors import cyan, green, yellow
+from utils.suggest_partitioning import suggest_partitioning
 
 country = "Brazil"
 keyboard = "br-abnt2"
@@ -39,7 +40,4 @@ print("Setting timezone to " + yellow(timezone))
 os.system("timedatectl set-ntp true")
 os.system(f"timedatectl set-timezone {timezone}")
 
-print("\nPlease, set your partitions now, format and mount them on " + yellow("/mnt") + ".")
-print("If all you want to do is to wipe all partitions and install " + cyan("Arch Linux") + ", you can run " + green("tali/quick_partitioning.py") + ".")
-print("Otherwise, you can format your partitions yourself with " + green("parted") + " or a similar tool.")
-print("\nWhen you're done, run " + green("tali/install.py") + " again.\n")
+suggest_partitioning()
