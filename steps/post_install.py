@@ -19,9 +19,9 @@ os.system("sed -i -e 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-synta
 
 print("Installing yay")
 # Build "yay" as user, since "makepkg" cannot be executed as "sudo"
-os.system("cd ~ && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -s")
+os.system("cd /tmp && git clone https://aur.archlinux.org/yay-bin.git && cd /tmp/yay-bin && makepkg -s")
 
 # Install yay
 os.system(f"sudo pacman -U /home/{username}/yay-bin/yay-*.pkg.tar.zst --noconfirm")
 
-os.system(f"rm -rf /home/{username}/yay-bin/")
+os.system(f"rm -rf /tmp/yay-bin/")
