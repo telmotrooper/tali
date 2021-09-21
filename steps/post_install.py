@@ -7,8 +7,6 @@ dvd = "libdvdread libdvdcss libdvdnav vlc"
 gnome_apps = "gnome-screenshot gnome-system-monitor gnome-calculator gedit eog evince file-roller"
 misc = "webp-pixbuf-loader" # WebP support
 
-username = subprocess.check_output("whoami", shell=True, stderr=subprocess.STDOUT).decode().strip()
-
 os.system(f"sudo pacman -S --noconfirm {gnome_apps} ffmpegthumbnailer xorg-xkill neofetch nemo-fileroller p7zip {dvd} {misc}")
 
 print("Installing oh-my-zsh and its plugins")
