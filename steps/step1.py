@@ -21,7 +21,7 @@ if(wireless_devices != []): # at least one wireless device was found
 else:
   print("No Wi-Fi device found")
 
-print("\nYou're running " + yellow(f"{get_firmware_interface()}"))
+print("\nYou're running in " + yellow(f"{get_firmware_interface()}") + " mode")
 
 disks = get_disks()
 
