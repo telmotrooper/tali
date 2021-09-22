@@ -18,7 +18,10 @@ use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap
 
 fw_interface = get_firmware_interface()
 
-boot_size = 261 if fw_interface === "UEFI" else 101 # MiB
+# Boot partition size (MiB)
+boot_bios = 261
+boot_uefi = 261
+boot_size = boot_uefi if fw_interface === "UEFI" else boot_bios
 
 swap_end = int(ram) + boot_size
 
