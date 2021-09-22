@@ -21,7 +21,7 @@ fw_interface = get_firmware_interface()
 # Boot partition size (MiB)
 boot_bios = 261
 boot_uefi = 261
-boot_size = boot_uefi if fw_interface === "UEFI" else boot_bios
+boot_size = boot_uefi if fw_interface == "UEFI" else boot_bios
 
 swap_end = int(ram) + boot_size
 
