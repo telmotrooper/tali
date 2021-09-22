@@ -37,7 +37,4 @@ print("Setting timezone to " + yellow(timezone))
 os.system("timedatectl set-ntp true")
 os.system(f"timedatectl set-timezone {timezone}")
 
-print(f"Writing mirrors from {yellow(country)} to the Pacman mirrorlist")
-os.system(f"reflector --verbose --threads 4 --protocol http,https --country {country} --age 12 --sort rate --save /etc/pacman.d/mirrorlist")
-
 suggest_partitioning()
