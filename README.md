@@ -6,7 +6,7 @@
 
 First of all, boot your [Arch Linux live CD](https://www.archlinux.org/download/).
 
-You'll need an active internet connection to use this script, if you need to use Wi-Fi type `iwctl` to find your Wi-Fi network and connect to it.
+You'll need an active internet connection to use the script, if you need to use Wi-Fi type `iwctl` to find your Wi-Fi network and connect to it.
 
 You'll also probably want to load the brazilian keyboard layout:
 ```
