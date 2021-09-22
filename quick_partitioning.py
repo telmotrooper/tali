@@ -18,46 +18,43 @@ use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap
 
 fw_interface = get_firmware_interface()
 
-swap_end = int(ram)
+boot_size = 261 if fw_interface === "UEFI" else 101 # MiB
 
-if(fw_interface == "BIOS"):
-  swap_end += 101 # 100 MiB
-else: #UEFI
-  swap_end += 261 # 260 MiB
+swap_end = int(ram) + boot_size
 
 if(fw_interface == "BIOS"):
   if(use_swap):
     os.system(f"""
       parted --script {disk} \
       mklabel msdos \
-      mkpart primary ext4 1MiB 101MiB \
+      mkpart primary ext4 1MiB {boot_size}MiB \
       set 1 boot on \
-      mkpart primary linux-swap 101MiB {swap_end}MiB \
+      mkpart primary linux-swap {boot_size}MiB {swap_end}MiB \
       mkpart primary ext4 {swap_end}MiB 100%""")
   else:
     os.system(f"""
       parted --script {disk} \
       mklabel msdos \
-      mkpart primary ext4 1MiB 101MiB \
+      mkpart primary ext4 1MiB {boot_size}MiB \
       set 1 boot on \
-      mkpart primary ext4 101MiB 100%""")
+      mkpart primary ext4 {boot_size}MiB 100%""")
 
 else: # UEFI
   if(use_swap):
     os.system(f"""
       parted --script {disk} \
       mklabel gpt \
-      mkpart primary fat32 1MiB 261MiB \
+      mkpart primary fat32 1MiB {boot_size}MiB \
       set 1 esp on \
-      mkpart primary linux-swap 261MiB {swap_end}MiB \
+      mkpart primary linux-swap {boot_size}MiB {swap_end}MiB \
       mkpart primary ext4 {swap_end}MiB 100%""")
   else:
     os.system(f"""
       parted --script {disk} \
       mklabel gpt \
-      mkpart primary fat32 1MiB 261MiB \
+      mkpart primary fat32 1MiB {boot_size}MiB \
       set 1 esp on \
-      mkpart primary ext4 261MiB 100%""")
+      mkpart primary ext4 {boot_size}MiB 100%""")
 
 
 print("--- Formatting partitions ---")
