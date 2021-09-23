@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-branch=main
+branch_name=main
 
 if [ -z "$1" ]
   then
     echo "Default branch"
   else
-    branch=$1
+    branch_name=$1
 fi
 
 printf "Generating mirrorlist with mirrors from Brazil for faster downloads...\n"
@@ -16,8 +16,8 @@ cat /etc/pacman.d/mirrorlist | grep Server
 printf "Downloading package \"git\"...\n"
 sudo pacman -Sy git --noconfirm
 
-printf "Cloning installer from branch $branch...\n"
-git clone --branch $branch https://github.com/telmotrooper/tali.git
+printf "Cloning installer from branch $branch_name...\n"
+git clone --branch $branch_name https://github.com/telmotrooper/tali.git
 
 printf "Executing installer...\n"
 tali/install.py
