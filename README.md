@@ -19,7 +19,9 @@ Then, proceed to download the script and run it:
 curl -L https://git.io/tali | bash
 ```
 
-If for some reason you'd like to clone a specific branch, you can instead run:
+## Additional info
+
+If for some reason you'd like to clone a specific branch and run that version of the script, you can instead use:
 ```
 curl -L https://git.io/tali | bash -s BRANCH_NAME
 ```
