@@ -81,4 +81,4 @@ else:
 os.system(f"mkdir /mnt/boot")
 os.system(f"mount {disk}{suffix}1 /mnt/boot")
 
-print("You're all set, run " + green("tali/install.py") + " again to continue installing " + cyan("Arch Linux") + ".")
+print("You're all set, run " + green("tali/install.py") + " to continue installing " + cyan("Arch Linux") + ".")
