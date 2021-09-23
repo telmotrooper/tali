@@ -6,8 +6,8 @@ def select_kernel() -> str:
     ("Mainline", "linux linux-headers")
   ])
 
-  for i, disk in enumerate(kernel_options):
-    print(f"{i+1}. {disk}")
+  for i, option in enumerate(kernel_options):
+    print(f"{i+1}. {option}")
   
   user_input = 0
 
