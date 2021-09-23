@@ -1,4 +1,5 @@
 from utils.colors import cyan, green, yellow
+from utils.select import select
 from utils.suggest_partitioning import suggest_partitioning
 from utils.yes_no_dialog import yes_no_dialog
 

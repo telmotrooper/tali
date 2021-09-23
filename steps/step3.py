@@ -1,6 +1,7 @@
 import os, subprocess, sys
 from getpass import getpass
 from utils.disk_utils import select_disk
+from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
 
 # List of packages
