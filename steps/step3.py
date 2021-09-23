@@ -99,6 +99,6 @@ SystemAccount=false\n\n' > /var/lib/AccountsService/users/{username}""")
 
 # Copy last step script to user desktop and remove the remaining files
 os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
-os.system(f"sudo -u {username} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"")
-os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install.py ~/Desktop/\"")
+os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_user.py ~/Desktop/\"")
+os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_system.py ~/Desktop/\"")
 os.system("rm -rf /tali")
