@@ -34,11 +34,21 @@ should_proceed = yes_no_dialog("Proceed?")
 if not should_proceed:
   sys.exit()
 
-# Remaining setup
-os.system(f"pacman -S --noconfirm {fonts} gnome-terminal gdm cinnamon firefox {themes} zsh git go")
+desktop_environment = select(
+    "Which desktop environment would you like to install?",
+    dict([
+        ("Cinnamon", "cinnamon gdm gnome-terminal"),
+        ("None", "")
+    ])
+)
 
-print("Enabling the display manager")
-os.system("systemctl enable gdm")
+# Remaining setup
+os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} firefox {themes} zsh git go")
+
+if "gdm" in desktop_environment:
+  print("Enabling the display manager")
+  os.system("systemctl enable gdm")
+
 os.system("systemctl enable NetworkManager")
 
 print("Synchroning the clock")
@@ -78,8 +88,8 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 # Enable colors for Pacman (and yay)
 os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
 
-# Setup GDM to default user to Cinnamon
-os.system(f"""printf '[User]
+if "gdm" in desktop_environment: # Setup GDM to default user to Cinnamon
+  os.system(f"""printf '[User]
 Language=
 Session=
 XSession=cinnamon
