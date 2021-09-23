@@ -18,3 +18,13 @@ Then, proceed to download the script and run it:
 ```
 curl -L https://git.io/tali | bash
 ```
+
+If for some reason you'd like to clone a specific branch, you can instead run:
+```
+curl -L https://git.io/tali | bash -s BRANCH_NAME
+```
+
+If you'd like to see contents of the script you're about to execute, you can use:
+```
+curl -L https://git.io/tali | less
+```
