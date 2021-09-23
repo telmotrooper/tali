@@ -9,7 +9,7 @@ if good_to_go:
 
   print()
   kernel_packages = select(
-    "Which kernel do you want to install?
+    "Which kernel do you want to install?",
     dict([
       ("Zen + Mainline (recommended)", "linux-zen linux-zen-headers linux linux-headers"),
       ("Zen", "linux-zen linux-zen-headers"),
