@@ -9,7 +9,7 @@ if [ -z "$1" ]
     branch_name=$1
 fi
 
-printf "Generating mirrorlist with mirrors from Brazil for faster downloads...\n"
+printf "Generating mirrorlist with mirrors from \u001b[32mBrazil\u001b[0m for faster downloads...\n"
 reflector --verbose --threads 4 --protocol http,https --country Brazil --age 12 --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist | grep Server
 
