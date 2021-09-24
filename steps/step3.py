@@ -102,3 +102,5 @@ os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
 os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_user.py ~/Desktop/\"")
 os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_system.py ~/Desktop/\"")
 os.system("rm -rf /tali")
+
+print("You can restart your computer now.")
