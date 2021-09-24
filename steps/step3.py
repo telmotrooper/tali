@@ -3,6 +3,7 @@ from getpass import getpass
 from utils.disk_utils import select_disk
 from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
+from utils.colors import yellow
 
 # List of packages
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
@@ -103,4 +104,4 @@ os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_user.py ~/Des
 os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_system.py ~/Desktop/\"")
 os.system("rm -rf /tali")
 
-print("You can restart your computer now.")
+print("You can restart your computer now (e.g. " + yellow("shutdown -r now") + ").")
