@@ -1,5 +1,5 @@
 from utils.colors import cyan, green, yellow
-from utils.select_kernel import select_kernel
+from utils.select import select
 from utils.suggest_partitioning import suggest_partitioning
 from utils.yes_no_dialog import yes_no_dialog
 
@@ -9,7 +9,14 @@ if good_to_go:
   import os
 
   print()
-  kernel_packages = select_kernel()
+  kernel_packages = select(
+    "Which kernel do you want to install?",
+    dict([
+      ("Zen + Mainline (recommended)", "linux-zen linux-zen-headers linux linux-headers"),
+      ("Zen", "linux-zen linux-zen-headers"),
+      ("Mainline", "linux linux-headers")
+    ])
+  )
 
   os.system(f"pacstrap /mnt base base-devel {kernel_packages} linux-firmware net-tools xdg-user-dirs")
   os.system("pacstrap /mnt python wget")

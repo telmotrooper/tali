@@ -1,7 +1,9 @@
 import os, subprocess, sys
 from getpass import getpass
 from utils.disk_utils import select_disk
+from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
+from utils.colors import yellow
 
 # List of packages
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
@@ -34,11 +36,21 @@ should_proceed = yes_no_dialog("Proceed?")
 if not should_proceed:
   sys.exit()
 
-# Remaining setup
-os.system(f"pacman -S --noconfirm {fonts} gnome-terminal gdm cinnamon firefox {themes} zsh git go")
+desktop_environment = select(
+    "Which desktop environment would you like to install?",
+    dict([
+        ("Cinnamon", "cinnamon gdm gnome-terminal"),
+        ("None", "")
+    ])
+)
 
-print("Enabling the display manager")
-os.system("systemctl enable gdm")
+# Remaining setup
+os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} networkmanager firefox {themes} zsh git go")
+
+if "gdm" in desktop_environment:
+  print("Enabling the display manager")
+  os.system("systemctl enable gdm")
+
 os.system("systemctl enable NetworkManager")
 
 print("Synchroning the clock")
@@ -78,8 +90,8 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 # Enable colors for Pacman (and yay)
 os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
 
-# Setup GDM to default user to Cinnamon
-os.system(f"""printf '[User]
+if "gdm" in desktop_environment: # Setup GDM to default user to Cinnamon
+  os.system(f"""printf '[User]
 Language=
 Session=
 XSession=cinnamon
@@ -88,6 +100,8 @@ SystemAccount=false\n\n' > /var/lib/AccountsService/users/{username}""")
 
 # Copy last step script to user desktop and remove the remaining files
 os.system(f"sudo -u {username} sh -c \"mkdir -p ~/Desktop\"")
-os.system(f"sudo -u {username} sh -c \"cp /tali/set_themes_and_kb_layout.py ~/Desktop/\"")
-os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install.py ~/Desktop/\"")
+os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_user.py ~/Desktop/\"")
+os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_system.py ~/Desktop/\"")
 os.system("rm -rf /tali")
+
+print("You can restart your computer now (e.g. " + yellow("shutdown -r now") + ").")
