@@ -9,7 +9,7 @@ from utils.colors import yellow
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 themes = "arc-gtk-theme papirus-icon-theme"
 
-echo "\nDefaults pwfeedback" | EDITOR="tee -a" visudo
+os.system("""echo "\nDefaults pwfeedback" | EDITOR="tee -a" visudo""")
 
 # Installing boot loader
 os.system(f"pacman -S --noconfirm  grub os-prober")
