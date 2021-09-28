@@ -7,7 +7,7 @@ from utils.run_command import run_command
 def install_systemdboot():
     os.system("bootctl install")
     
-    kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/headers|firmware/' | awk '{print $1}'")
+    kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/atm|headers|firmware/' | awk '{print $1}'")
 
     print("Kernels installed are:")
     print(kernels_installed.splitlines())
