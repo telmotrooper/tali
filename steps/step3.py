@@ -97,7 +97,6 @@ os.system("mv /etc/sudoers_new /etc/sudoers")
 # Enable colors for Pacman (and yay)
 os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
 
-
 if "gdm" in desktop_environment: # Setup GDM to default user to Cinnamon
   os.system(f"""printf '[User]
 Language=
