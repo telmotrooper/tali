@@ -100,7 +100,7 @@ os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
 if "gdm" in desktop_environment: # Setup GDM to default user to Cinnamon
   os.system(f"""printf '[User]
 Language=
-Session=
+Session=cinnamon
 XSession=cinnamon
 Icon=
 SystemAccount=false\n\n' > /var/lib/AccountsService/users/{username}""")
