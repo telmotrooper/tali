@@ -24,6 +24,6 @@ if good_to_go:
   run_command("genfstab -U /mnt >> /mnt/etc/fstab")
   run_command("cp -r /root/tali /mnt/tali")
   run_command("cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist")
-  os.system("arch-chroot /mnt python tali/install.py --step 3")
+  run_command("arch-chroot /mnt python tali/install.py --step 3")
 else:
   suggest_partitioning()
