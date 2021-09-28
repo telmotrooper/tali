@@ -1,6 +1,7 @@
 import os
 
 from utils.get_firmware_interface import get_firmware_interface
+from utils.yes_no_dialog import yes_no_dialog
 
 def install_grub():
     fw_interface = get_firmware_interface()
