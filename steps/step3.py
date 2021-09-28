@@ -9,6 +9,8 @@ from utils.get_firmware_interface import get_firmware_interface
 from utils.install_grub import install_grub
 from utils.install_systemdboot import install_systemdboot
 
+# Step 3 runs inside chroot environment.
+
 # List of packages
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 themes = "arc-gtk-theme papirus-icon-theme"

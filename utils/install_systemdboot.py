@@ -12,6 +12,12 @@ def install_systemdboot():
     print("Kernels installed are:")
     print(kernels_installed.splitlines())
 
+    run_command(f"""echo 'default         arch_{kernels_installed[0]}.conf
+timeout         1
+console-mode    max
+editor          no' > /boot/loader/loader.conf""")
+
+
     # TODO:
     # [x] Check which kernels are installed
     # Find out on which drive the system was installed
@@ -23,6 +29,7 @@ def install_systemdboot():
         generate_entry(kernel, temp_partition)
 
 def generate_entry(kernel_package: str, root_partition: str):
+    print(f'Generating boot entry for "{kernel_package}"...')
     entry = dict()
     entry["title"] = f"Arch Linux ({kernel_package})"
     entry["linux"] = f"/vmlinuz-{kernel_package}"
