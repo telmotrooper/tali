@@ -13,16 +13,25 @@ def install_systemdboot():
     print(kernels_installed.splitlines())
 
     # TODO:
-    # Check which kernels are installed
+    # [x] Check which kernels are installed
     # Find out on which drive the system was installed
     # Find out which partition is the root partition
 
-    os.system("""echo "title   Arch Linux (Zen)
-linux   /vmlinuz-linux-zen
-initrd  /initramfs-linux-zen.img
-options root=/dev/sda2 rw" > /boot/loader/loader.conf""")
+    temp_partition = "/dev/sda2"
 
-    os.system("""echo "title   Arch Linux (Zen)
-linux   /vmlinuz-linux-zen
-initrd  /initramfs-linux-zen.img
-options root=/dev/sda2 rw" > /boot/loader/entries/arch_zen.conf""")
+    for kernel in kernels_installed.splitlines():
+        generate_entry(kernel, temp_partition)
+
+def generate_entry(kernel_package: str, root_partition: str):
+    entry = dict()
+    entry["title"] = f"Arch Linux ({kernel_package})"
+    entry["linux"] = f"/vmlinuz-{kernel_package}"
+    entry["initrd"] = f"/initramfs-{kernel_package}.img"
+    entry["options"] = f"root={root_partition} rw"
+
+    file_content = ""
+
+    for key, value in entry.items():
+        file_content += f"{key}\t{value}\n"
+
+    run_command(f"echo '{file_content}' > /boot/loader/entries/arch_{kernel_package}.conf")
