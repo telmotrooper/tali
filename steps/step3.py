@@ -9,8 +9,6 @@ from utils.colors import yellow
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 themes = "arc-gtk-theme papirus-icon-theme"
 
-os.system("""echo "\nDefaults pwfeedback" | sudo EDITOR="tee -a" visudo""")
-
 # Installing boot loader
 os.system(f"pacman -S --noconfirm  grub os-prober")
 
@@ -87,10 +85,12 @@ print("-" * 100)
 os.system(f"echo root:{password1} | chpasswd")
 os.system(f"echo {username}:{password1} | chpasswd")
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
+os.system("echo '\nDefaults pwfeedback' | tee -a /etc/sudoers_new")
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
 # Enable colors for Pacman (and yay)
 os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
+
 
 if "gdm" in desktop_environment: # Setup GDM to default user to Cinnamon
   os.system(f"""printf '[User]
