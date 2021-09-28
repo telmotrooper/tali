@@ -1,5 +1,5 @@
-from subprocess import check_output
+import subprocess
 
 def run_command(command: str):
-    output = check_output(command, shell=True, stderr=subprocess.STDOUT).decode().rstrip()
+    output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode().rstrip()
     return output
