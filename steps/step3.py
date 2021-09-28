@@ -1,5 +1,6 @@
 import os, subprocess, sys
 from getpass import getpass
+
 from utils.disk_utils import select_disk
 from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
@@ -85,6 +86,12 @@ print("-" * 100)
 os.system(f"echo root:{password1} | chpasswd")
 os.system(f"echo {username}:{password1} | chpasswd")
 os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
+
+enable_pwfeedback = yes_no_dialog("Would you like to enable password feedback?")
+
+if enable_pwfeedback:
+  os.system("echo '\nDefaults pwfeedback' | tee -a /etc/sudoers_new")
+
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
 # Enable colors for Pacman (and yay)
