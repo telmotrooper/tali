@@ -5,37 +5,31 @@ from utils.disk_utils import select_disk
 from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
 from utils.colors import yellow
+from utils.get_firmware_interface import get_firmware_interface
+from utils.install_grub import install_grub
+from utils.install_systemdboot import install_systemdboot
 
 # List of packages
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 themes = "arc-gtk-theme papirus-icon-theme"
 
-# Installing boot loader
-os.system(f"pacman -S --noconfirm  grub os-prober")
+fw_interface = get_firmware_interface()
 
-ls_efi = subprocess.check_output(
-  "ls /sys/firmware/efi/efivars; exit 0;",
-  shell=True, stderr=subprocess.STDOUT).decode()
+boot_loader = "GRUB"
 
-if(ls_efi[:2] == "ls"):
-  boot = "BIOS"
+if fw_interface == "UEFI":
+  boot_loader = select(
+      "Which boot loader would you like to install?",
+      dict([
+          ("systemd-boot", "systemd-boot"),
+          ("GRUB", "GRUB")
+      ])
+  )
+
+if boot_loader == "GRUB":
+  install_grub()
 else:
-  boot = "UEFI"
-
-if(boot == "UEFI"):
-  os.system("pacman -S --noconfirm efibootmgr")
-  os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB")
-else:
-  print("In which disk should GRUB be installed?")
-  disk = select_disk()
-  os.system(f"grub-install --target=i386-pc {disk}")
-
-os.system("grub-mkconfig -o /boot/grub/grub.cfg")
-
-should_proceed = yes_no_dialog("Proceed?")
-
-if not should_proceed:
-  sys.exit()
+  install_systemdboot()
 
 desktop_environment = select(
     "Which desktop environment would you like to install?",
