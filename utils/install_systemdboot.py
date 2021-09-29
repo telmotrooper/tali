@@ -11,15 +11,11 @@ def install_systemdboot():
     
     generate_loader_config(kernels_installed[0])
     
-    # TODO:
-    # [x] Check which kernels are installed
-    # Find out on which drive the system was installed
-    # Find out which partition is the root partition
-
-    temp_partition = "/dev/sda2"
+    # Find out where "/" is mounted.
+    home_partition = run_command("""mount -l | awk '/on \/ /' | awk '{printf $1"\n"}'""")
 
     for kernel in kernels_installed.splitlines():
-        generate_entry(kernel, temp_partition)
+        generate_entry(kernel, home_partition)
 
 def generate_entry(kernel_package: str, root_partition: str):
     print(f'Generating boot entry for "{kernel_package}"...')
