@@ -45,7 +45,7 @@ def generate_loader_config(default_kernel: str):
 def dict_to_file_content(entries: dict):
     file_content = ""
 
-    for key, value in entry.items():
+    for key, value in entries.items():
         file_content += f"{key}\t{value}\n"
     
     return file_content
