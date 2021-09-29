@@ -23,7 +23,7 @@ def select_disk():
 
 def get_disks():
   disks_found = subprocess.check_output(
-    "fdisk -l | grep 'Disk /' | awk '{print $2, $3, $4}'",
+    "fdisk -l | awk '/Disk \//' | awk '!/loop/' | awk '{print $2, $3, $4}'",
     shell=True, stderr=subprocess.STDOUT).decode()
   
   disks_found = disks_found.replace(': ', ' (').replace(',', ')')

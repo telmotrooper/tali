@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, subprocess
+import os, sys, subprocess
 
 # List of packages
 dvd = "libdvdread libdvdcss libdvdnav vlc"
@@ -17,3 +17,6 @@ os.system("cd /tmp && git clone https://aur.archlinux.org/yay-bin.git && cd /tmp
 os.system(f"sudo pacman -U /tmp/yay-bin/yay-*.pkg.tar.zst --noconfirm")
 
 os.system(f"rm -rf /tmp/yay-bin/")
+
+# Remove script after it's been executed
+os.remove(sys.argv[0])
