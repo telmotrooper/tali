@@ -12,7 +12,7 @@ def install_systemdboot():
     generate_loader_config(kernels_installed[0])
     
     # Find out where "/" is mounted.
-    home_partition = run_command("""mount -l | awk '/on \/ /' | awk '{printf $1"\n"}'""")
+    home_partition = run_command("""mount -l | awk '/on \/ /' | awk '{printf $1"\\n"}'""")
 
     for kernel in kernels_installed.splitlines():
         generate_entry(kernel, home_partition)
