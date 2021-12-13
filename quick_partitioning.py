@@ -99,9 +99,18 @@ def main():
       os.system(f"swapon {disk}{suffix}{partition_number}")
       partition_number += 1
     
-    os.system(f"mkfs.ext4 {disk}{suffix}{partition_number}")
+    if encrypt:
+      os.system(f"cryptsetup -y -v luksFormat {disk}{suffix}{partition_number}")
+      os.system(f"cryptsetup open {disk}{suffix}{partition_number} cryptroot")
+      os.system("mkfs.ext4 /dev/mapper/cryptroot")
+    else:
+      os.system(f"mkfs.ext4 {disk}{suffix}{partition_number}")
+    
     print("--- Mounting partitions ---")
-    os.system(f"mount {disk}{suffix}{partition_number} /mnt")
+    if encrypt:
+      os.system("mount /dev/mapper/cryptroot /mnt")
+    else:
+      os.system(f"mount {disk}{suffix}{partition_number} /mnt")
 
     # These steps are the same for all combinations
     os.system(f"mkdir /mnt/boot")
