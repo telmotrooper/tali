@@ -75,26 +75,27 @@ def main():
   
   os.system(parted_command)
 
-  print("--- Formatting partitions ---")
-  if(fw_interface == "BIOS"):
-    os.system(f"mkfs.ext4 {disk}{suffix}1")
-  else: # UEFI
-    os.system(f"mkfs.fat -F32 {disk}{suffix}1")
+  if args.format_and_mount:
+    print("--- Formatting partitions ---")
+    if(fw_interface == "BIOS"):
+      os.system(f"mkfs.ext4 {disk}{suffix}1")
+    else: # UEFI
+      os.system(f"mkfs.fat -F32 {disk}{suffix}1")
 
-  if(use_swap):
-    os.system(f"mkswap {disk}{suffix}2")
-    os.system(f"swapon {disk}{suffix}2")
-    os.system(f"mkfs.ext4 {disk}{suffix}3")
-    print("--- Mounting partitions ---")
-    os.system(f"mount {disk}{suffix}3 /mnt")
-  else:
-    os.system(f"mkfs.ext4 {disk}{suffix}2")
-    print("--- Mounting partitions ---")
-    os.system(f"mount {disk}{suffix}2 /mnt")
+    if(use_swap):
+      os.system(f"mkswap {disk}{suffix}2")
+      os.system(f"swapon {disk}{suffix}2")
+      os.system(f"mkfs.ext4 {disk}{suffix}3")
+      print("--- Mounting partitions ---")
+      os.system(f"mount {disk}{suffix}3 /mnt")
+    else:
+      os.system(f"mkfs.ext4 {disk}{suffix}2")
+      print("--- Mounting partitions ---")
+      os.system(f"mount {disk}{suffix}2 /mnt")
 
-  # These steps are the same for all combinations
-  os.system(f"mkdir /mnt/boot")
-  os.system(f"mount {disk}{suffix}1 /mnt/boot")
+    # These steps are the same for all combinations
+    os.system(f"mkdir /mnt/boot")
+    os.system(f"mount {disk}{suffix}1 /mnt/boot")
 
   print("You're all set, run " + green("tali/install.py") + " to continue installing " + cyan("Arch Linux") + ".")
 
