@@ -11,6 +11,7 @@ from utils.yes_no_dialog import yes_no_dialog
 def main():
   parser = argparse.ArgumentParser()
   parser.add_argument("--debug", action="store_true")
+  parser.add_argument("--format-and-mount", default=True)
   args = parser.parse_args()
 
   ram = get_ram_amount()
