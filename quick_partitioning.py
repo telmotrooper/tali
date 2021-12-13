@@ -69,6 +69,9 @@ def main():
         set 1 esp on \
         mkpart primary ext4 {boot_size}MiB 100%"""
 
+  if args.debug:
+    print(parted_command)
+  
   os.system(parted_command)
 
   print("--- Formatting partitions ---")
