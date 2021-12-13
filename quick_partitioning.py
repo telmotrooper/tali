@@ -12,15 +12,17 @@ def main():
   parser = argparse.ArgumentParser()
   parser.add_argument("--debug", action="store_true")
   args = parser.parse_args()
-  
+
   ram = get_ram_amount()
 
   print("Which disk should be partitioned? ")
   disk = select_disk()
 
+  encrypt = yes_no_dialog("Would you like to encrypt your system using dm-crypt and LUKS?")
+
   suffix = "p" if ("nvme" in disk) else "" # NVMe numbers partitions as p1, p2, p3 instead of 1, 2, 3.
 
-  use_swap = yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap partition of the same size?")
+  use_swap = False if encrypt else yes_no_dialog(f"We detected {ram} MiB of RAM, should we create a swap partition of the same size?")
 
   fw_interface = get_firmware_interface()
 
