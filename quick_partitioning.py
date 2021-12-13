@@ -15,11 +15,11 @@ def main():
   args = parser.parse_args()
 
   if isinstance(format_and_mount, str): # Parse string to boolean.
-    match format_and_mount.lower():
+    match args.format_and_mount.lower():
       case 'true':
-        format_and_mount = True
+        args.format_and_mount = True
       case 'false':
-        format_and_mount = False
+        args.format_and_mount = False
 
   ram = get_ram_amount()
 
