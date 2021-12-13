@@ -84,21 +84,24 @@ def main():
 
   if args.format_and_mount:
     print("--- Formatting partitions ---")
+
+    partition_number = 1
+
     if(fw_interface == "BIOS"):
-      os.system(f"mkfs.ext4 {disk}{suffix}1")
+      os.system(f"mkfs.ext4 {disk}{suffix}{partition_number}")
     else: # UEFI
-      os.system(f"mkfs.fat -F32 {disk}{suffix}1")
+      os.system(f"mkfs.fat -F32 {disk}{suffix}{partition_number}")
+    
+    partition_number += 1
 
     if(use_swap):
-      os.system(f"mkswap {disk}{suffix}2")
-      os.system(f"swapon {disk}{suffix}2")
-      os.system(f"mkfs.ext4 {disk}{suffix}3")
-      print("--- Mounting partitions ---")
-      os.system(f"mount {disk}{suffix}3 /mnt")
-    else:
-      os.system(f"mkfs.ext4 {disk}{suffix}2")
-      print("--- Mounting partitions ---")
-      os.system(f"mount {disk}{suffix}2 /mnt")
+      os.system(f"mkswap {disk}{suffix}")
+      os.system(f"swapon {disk}{suffix}{partition_number}")
+      partition_number += 1
+    
+    os.system(f"mkfs.ext4 {disk}{suffix}{partition_number}")
+    print("--- Mounting partitions ---")
+    os.system(f"mount {disk}{suffix}{partition_number} /mnt")
 
     # These steps are the same for all combinations
     os.system(f"mkdir /mnt/boot")
