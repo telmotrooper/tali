@@ -101,6 +101,7 @@ def main():
     
     if encrypt:
       os.system(f"cryptsetup -y -v luksFormat {disk}{suffix}{partition_number}")
+      print("\nYou will have to enter your password again to unlock the partition.\n")
       os.system(f"cryptsetup open {disk}{suffix}{partition_number} cryptroot")
       os.system("mkfs.ext4 /dev/mapper/cryptroot")
     else:
