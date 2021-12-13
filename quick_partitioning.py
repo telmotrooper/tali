@@ -10,7 +10,7 @@ from utils.yes_no_dialog import yes_no_dialog
 
 def main():
   parser = argparse.ArgumentParser()
-  parser.add_argument("--debug")
+  parser.add_argument("--debug", action="store_true")
   args = parser.parse_args()
 
   print(args)
