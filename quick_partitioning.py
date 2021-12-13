@@ -14,7 +14,7 @@ def main():
   parser.add_argument("--format-and-mount", default=True)
   args = parser.parse_args()
 
-  if isinstance(format_and_mount, str): # Parse string to boolean.
+  if isinstance(args.format_and_mount, str): # Parse string to boolean.
     match args.format_and_mount.lower():
       case 'true':
         args.format_and_mount = True
