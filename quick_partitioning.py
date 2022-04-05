@@ -17,9 +17,9 @@ def main():
 
   if isinstance(args.format_and_mount, str): # Parse string to boolean.
     match args.format_and_mount.lower():
-      case 'true':
+      case "true":
         args.format_and_mount = True
-      case 'false':
+      case "false":
         args.format_and_mount = False
 
   ram = get_ram_amount()
@@ -122,7 +122,7 @@ def main():
     os.system(f"mkdir /mnt/boot")
     os.system(f"mount {disk}{suffix}1 /mnt/boot")
 
-  print("You're all set, run " + green("tali/install.py") + " to continue installing " + cyan("Arch Linux") + ".")
+  print("You"re all set, run " + green("tali/install.py") + " to continue installing " + cyan("Arch Linux") + ".")
 
 if __name__ == "__main__":
   main()
