@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import os, sys, subprocess
+import os
+import sys
 
 # List of packages
 dvd = "libdvdread libdvdcss libdvdnav vlc"
