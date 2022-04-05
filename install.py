@@ -22,7 +22,7 @@ def main():
     write_config_file()
 
   if config.read(path) == []: # no config file found
-  config.set("DEFAULT", "Step", "1")
+    config.set("DEFAULT", "Step", "1")
     write_config_file()
 
   step = int(config["DEFAULT"]["Step"])
