@@ -7,12 +7,21 @@ from utils.colors import yellow
 from utils.get_firmware_interface import get_firmware_interface
 from utils.install_grub import install_grub
 from utils.install_systemdboot import install_systemdboot
+from install import config
 
 # Step 3 runs inside chroot environment.
 
 # List of packages
 fonts = "ttf-bitstream-vera ttf-droid noto-fonts-emoji"
 themes = "arc-gtk-theme papirus-icon-theme"
+
+config.read("/tali/tali.ini")
+encrypt = bool(config["DEFAULT"]["Encrypt"])
+
+if encrypt:
+    os.system("cat /etc/mkinitcpio.conf | sed 's/ filesystems / encrypt filesystems /' > /tmp/mkinitcpio.conf")
+    os.system("mv /tmp/mkinitcpio.conf /etc/mkinitcpio.conf")
+    os.system("mkinitcpio -P")
 
 fw_interface = get_firmware_interface()
 
@@ -30,7 +39,7 @@ if fw_interface == "UEFI":
 if boot_loader == "GRUB":
     install_grub()
 else:
-    install_systemdboot()
+    install_systemdboot(encrypt)
 
 desktop_environment = select(
     "Which desktop environment would you like to install?",
