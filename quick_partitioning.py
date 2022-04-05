@@ -122,7 +122,7 @@ def main():
     os.system(f"mkdir /mnt/boot")
     os.system(f"mount {disk}{suffix}1 /mnt/boot")
 
-  print("You"re all set, run " + green("tali/install.py") + " to continue installing " + cyan("Arch Linux") + ".")
+  print("You're all set, run " + green("tali/install.py") + " to continue installing " + cyan("Arch Linux") + ".")
 
 if __name__ == "__main__":
   main()
