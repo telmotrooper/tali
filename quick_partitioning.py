@@ -7,6 +7,7 @@ from utils.disk_utils import select_disk
 from utils.get_firmware_interface import get_firmware_interface
 from utils.colors import cyan, green, yellow
 from utils.yes_no_dialog import yes_no_dialog
+from install import config, path, write_config_file
 
 def main():
   parser = argparse.ArgumentParser()
@@ -104,6 +105,10 @@ def main():
       print("\nYou will have to enter your password again to unlock the partition.\n")
       os.system(f"cryptsetup open {disk}{suffix}{partition_number} cryptroot")
       os.system("mkfs.ext4 /dev/mapper/cryptroot")
+
+      config.read(path)
+      config["DEFAULT"] = { 'Encrypt': True }
+      write_config_file()
     else:
       os.system(f"mkfs.ext4 {disk}{suffix}{partition_number}")
     
