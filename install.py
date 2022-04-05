@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import argparse, configparser
+import argparse
+import configparser
 
 # global variables
 path = "/tmp/tali.ini"
@@ -30,17 +31,15 @@ def main():
     step = int(config["DEFAULT"]["Step"])
 
     if step == 1:
-        import steps.step1
         config.set("DEFAULT", "Step", "2")
         write_config_file()
 
     elif step == 2:
-        import steps.step2
         config.set("DEFAULT", "Step", "3")
         write_config_file()
 
     elif step == 3:
-        import steps.step3
+        pass
 
 
 if __name__ == "__main__":
