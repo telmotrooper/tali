@@ -7,7 +7,7 @@ path = "/tmp/tali.ini"
 config = configparser.ConfigParser()
 
 def write_config_file():
-  with open("/tmp/tali.ini", "w+") as config_file:
+  with open(path, "w+") as config_file:
     config.write(config_file)
 
 def main():
