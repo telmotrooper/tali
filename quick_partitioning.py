@@ -107,7 +107,7 @@ def main():
       os.system("mkfs.ext4 /dev/mapper/cryptroot")
 
       config.read(path)
-      config["DEFAULT"] = { 'Encrypt': True }
+      config.set("DEFAULT", "Encrypt", True)
       write_config_file()
     else:
       os.system(f"mkfs.ext4 {disk}{suffix}{partition_number}")
