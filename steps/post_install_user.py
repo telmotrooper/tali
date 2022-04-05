@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-import os, sys
+import os
 import subprocess
+import sys
 
 print("Installing oh-my-zsh and its plugins")
 os.system("sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended\"")

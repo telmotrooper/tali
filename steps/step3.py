@@ -1,7 +1,6 @@
-import os, subprocess, sys
+import os
 from getpass import getpass
 
-from utils.disk_utils import select_disk
 from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
 from utils.colors import yellow
@@ -20,18 +19,18 @@ fw_interface = get_firmware_interface()
 boot_loader = "GRUB"
 
 if fw_interface == "UEFI":
-  boot_loader = select(
-      "Which boot loader would you like to install?",
-      dict([
-          ("systemd-boot", "systemd-boot"),
-          ("GRUB", "GRUB")
-      ])
-  )
+    boot_loader = select(
+        "Which boot loader would you like to install?",
+        dict([
+            ("systemd-boot", "systemd-boot"),
+            ("GRUB", "GRUB")
+        ])
+    )
 
 if boot_loader == "GRUB":
-  install_grub()
+    install_grub()
 else:
-  install_systemdboot()
+    install_systemdboot()
 
 desktop_environment = select(
     "Which desktop environment would you like to install?",
@@ -45,8 +44,8 @@ desktop_environment = select(
 os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} networkmanager firefox {themes} zsh git go")
 
 if "gdm" in desktop_environment:
-  print("Enabling the display manager")
-  os.system("systemctl enable gdm")
+    print("Enabling the display manager")
+    os.system("systemctl enable gdm")
 
 os.system("systemctl enable NetworkManager")
 
@@ -71,12 +70,12 @@ os.system(f"useradd -m -G wheel -s /bin/zsh {username}")
 password1 = "1"
 password2 = "2"
 
-while(password1 != password2):
-  password1 = getpass("Set your password: ")
-  password2 = getpass("Repeat your password: ")
-  
-  if password1 != password2:
-    print("The passwords don't match.")
+while (password1 != password2):
+    password1 = getpass("Set your password: ")
+    password2 = getpass("Repeat your password: ")
+
+    if password1 != password2:
+        print("The passwords don't match.")
 print("-" * 100)
 
 os.system(f"echo root:{password1} | chpasswd")
@@ -86,15 +85,15 @@ os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL
 enable_pwfeedback = yes_no_dialog("Would you like to enable password feedback?")
 
 if enable_pwfeedback:
-  os.system("echo '\nDefaults pwfeedback' | tee -a /etc/sudoers_new")
+    os.system("echo '\nDefaults pwfeedback' | tee -a /etc/sudoers_new")
 
 os.system("mv /etc/sudoers_new /etc/sudoers")
 
 # Enable colors for Pacman (and yay)
 os.system("sed -i 's/#Color/Color/g' /etc/pacman.conf")
 
-if "gdm" in desktop_environment: # Setup GDM to default user to Cinnamon
-  os.system(f"""printf '[User]
+if "gdm" in desktop_environment:  # Setup GDM to default user to Cinnamon
+    os.system(f"""printf '[User]
 Language=
 Session=cinnamon
 XSession=cinnamon
