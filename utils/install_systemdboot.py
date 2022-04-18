@@ -29,7 +29,7 @@ def generate_entry(kernel_package: str, root_partition: str, encrypt: bool):
     entry["initrd"] = f"/initramfs-{kernel_package}.img"
 
     if encrypt:
-        entry["options"] = f"cryptdevice=UUID={root_partition}:cryptroot root=/dev/mapper/cryptroot"
+        entry["options"] = f"cryptdevice=UUID={root_partition}:cryptroot root=/dev/mapper/cryptroot rw"
     else:
         entry["options"] = f"root={root_partition} rw"
 
