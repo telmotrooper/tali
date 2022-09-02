@@ -13,11 +13,12 @@ printf "Generating mirrorlist with mirrors from \u001b[32mBrazil\u001b[0m for fa
 reflector --verbose --threads 4 --protocol http,https --country Brazil --age 12 --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist | grep Server
 
+pacman -Sy
 pacman-key --init
-pacman-key --populate
+pacman-key --populate archlinux
 
 printf "Downloading package \"git\"...\n"
-sudo pacman -Sy git --noconfirm
+sudo pacman -S git --noconfirm
 
 printf "Cloning installer from branch $branch_name...\n"
 git clone --branch $branch_name https://github.com/telmotrooper/tali.git
