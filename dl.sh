@@ -13,6 +13,9 @@ printf "Generating mirrorlist with mirrors from \u001b[32mBrazil\u001b[0m for fa
 reflector --verbose --threads 4 --protocol http,https --country Brazil --age 12 --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist | grep Server
 
+pacman-key --init
+pacman-key --populate
+
 printf "Downloading package \"git\"...\n"
 sudo pacman -Sy git --noconfirm
 
