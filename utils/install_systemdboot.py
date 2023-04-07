@@ -9,7 +9,7 @@ def install_systemdboot(encrypt=False):
 
     kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/atm|headers|firmware/' | awk '{print $1}'").split("\n")
 
-    generate_loader_config(kernels_installed)
+    generate_loader_config(kernels_installed[0])
 
     # Find out where "/" is mounted.
     root_partition = run_command("""mount -l | awk '/on \/ /' | awk '{printf $1"\\n"}'""")
