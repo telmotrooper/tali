@@ -7,9 +7,9 @@ from utils.run_command import run_command
 def install_systemdboot(encrypt=False):
     os.system("bootctl install")
 
-    kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/atm|headers|firmware/' | awk '{print $1}'")
+    kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/atm|headers|firmware/' | awk '{print $1}'").split("\n")
 
-    generate_loader_config(kernels_installed[0])
+    generate_loader_config(kernels_installed)
 
     # Find out where "/" is mounted.
     root_partition = run_command("""mount -l | awk '/on \/ /' | awk '{printf $1"\\n"}'""")
