@@ -71,7 +71,7 @@ print("-" * 100)
 
 os.system(f"echo root:{password1} | chpasswd")
 os.system(f"echo {username}:{password1} | chpasswd")
-os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' > /etc/sudoers_new")
+os.system("cat /etc/sudoers | sed 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' > /etc/sudoers_new")
 
 enable_pwfeedback = yes_no_dialog("Would you like to enable password feedback?")
 
