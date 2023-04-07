@@ -26,7 +26,7 @@ fw_interface = get_firmware_interface()
 
 print("\nYou're running in " + yellow(fw_interface) + " mode")
 
-if fw_interface === "BIOS":
+if fw_interface == "BIOS":
     print("\nThis script does not support BIOS, please boot in UEFI mode if possible.")
     return
 
