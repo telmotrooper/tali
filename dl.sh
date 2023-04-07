@@ -14,8 +14,6 @@ reflector --verbose --threads 4 --protocol http,https --country Brazil --age 12 
 cat /etc/pacman.d/mirrorlist | grep Server
 
 pacman -Sy
-pacman-key --init
-pacman-key --populate archlinux
 
 printf "Downloading package \"git\"...\n"
 sudo pacman -S git --noconfirm
