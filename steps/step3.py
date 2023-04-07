@@ -32,7 +32,7 @@ desktop_environment = select(
 )
 
 # Remaining setup
-os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} networkmanager firefox {themes} zsh git go")
+os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} networkmanager firefox {themes} zsh git go micro")
 
 if "gdm" in desktop_environment:
     print("Enabling the display manager")
@@ -98,3 +98,4 @@ os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_system.py ~/D
 os.system("rm -rf /tali")
 
 print("You can restart your computer now (e.g. " + yellow("shutdown -r now") + ").")
+print("If you want to make any adjustments to your installation, you can access it with " + yellow("arch-chroot /mnt") + ".")

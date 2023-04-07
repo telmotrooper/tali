@@ -7,7 +7,7 @@ from utils.run_command import run_command
 def install_systemdboot(encrypt=False):
     os.system("bootctl install")
 
-    kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/atm|headers|firmware/' | awk '{print $1}'")
+    kernels_installed = run_command("pacman -Q | awk '/^linux/' | awk '!/atm|headers|firmware/' | awk '{print $1}'").splitlines()
 
     generate_loader_config(kernels_installed[0])
 
@@ -17,7 +17,7 @@ def install_systemdboot(encrypt=False):
     if "cryptroot" in root_partition:
         root_partition = run_command("blkid | grep 'crypto_LUKS' | grep -Po ' UUID=\"\K[^\"]*'")
 
-    for kernel in kernels_installed.splitlines():
+    for kernel in kernels_installed:
         generate_entry(kernel, root_partition, encrypt)
 
 
