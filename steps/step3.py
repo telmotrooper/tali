@@ -4,8 +4,6 @@ from getpass import getpass
 from utils.select import select
 from utils.yes_no_dialog import yes_no_dialog
 from utils.colors import yellow
-from utils.get_firmware_interface import get_firmware_interface
-from utils.install_grub import install_grub
 from utils.install_systemdboot import install_systemdboot
 from install import config
 
@@ -23,23 +21,7 @@ if encrypt:
     os.system("mv /tmp/mkinitcpio.conf /etc/mkinitcpio.conf")
     os.system("mkinitcpio -P")
 
-fw_interface = get_firmware_interface()
-
-boot_loader = "GRUB"
-
-if fw_interface == "UEFI":
-    boot_loader = select(
-        "Which boot loader would you like to install?",
-        dict([
-            ("systemd-boot", "systemd-boot"),
-            ("GRUB", "GRUB")
-        ])
-    )
-
-if boot_loader == "GRUB":
-    install_grub()
-else:
-    install_systemdboot(encrypt)
+install_systemdboot(encrypt)
 
 desktop_environment = select(
     "Which desktop environment would you like to install?",

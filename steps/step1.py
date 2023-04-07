@@ -1,5 +1,5 @@
-import os
-from utils.colors import yellow
+import os, sys
+from utils.colors import green, yellow
 from utils.get_firmware_interface import get_firmware_interface
 from utils.get_wireless_devices import get_wireless_devices
 from utils.disk_utils import get_disks
@@ -21,7 +21,14 @@ if wireless_devices:  # at least one wireless device was found
 else:
     print("No Wi-Fi device found")
 
-print("\nYou're running in " + yellow(f"{get_firmware_interface()}") + " mode")
+
+fw_interface = get_firmware_interface()
+
+print("\nYou're running in " + yellow(fw_interface) + " mode")
+
+if fw_interface == "BIOS":
+    print(f"\nThis script does not support BIOS, please boot in {green('UEFI')} mode if possible.\n")
+    sys.exit()
 
 disks = get_disks()
 
