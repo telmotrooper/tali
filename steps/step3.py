@@ -98,3 +98,4 @@ os.system(f"sudo -u {username} sh -c \"cp /tali/steps/post_install_system.py ~/D
 os.system("rm -rf /tali")
 
 print("You can restart your computer now (e.g. " + yellow("shutdown -r now") + ").")
+print("If you want to make any adjustments to your installation, you can access it with " + yellow("arch-chroot /mnt") + ".")
