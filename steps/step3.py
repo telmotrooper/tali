@@ -32,7 +32,7 @@ desktop_environment = select(
 )
 
 # Remaining setup
-os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} networkmanager firefox {themes} zsh git go")
+os.system(f"pacman -S --noconfirm {fonts} {desktop_environment} networkmanager firefox {themes} zsh git go micro")
 
 if "gdm" in desktop_environment:
     print("Enabling the display manager")
