@@ -21,7 +21,14 @@ if wireless_devices:  # at least one wireless device was found
 else:
     print("No Wi-Fi device found")
 
-print("\nYou're running in " + yellow(f"{get_firmware_interface()}") + " mode")
+
+fw_interface = get_firmware_interface()
+
+print("\nYou're running in " + yellow(fw_interface) + " mode")
+
+if fw_interface === "BIOS":
+    print("\nThis script does not support BIOS, please boot in UEFI mode if possible.")
+    return
 
 disks = get_disks()
 
