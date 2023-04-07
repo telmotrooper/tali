@@ -22,4 +22,5 @@ printf "Cloning installer from branch $branch_name...\n"
 git clone --branch $branch_name https://github.com/telmotrooper/tali.git
 
 printf "Executing installer...\n"
+clear
 tali/install.py
