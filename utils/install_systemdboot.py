@@ -15,7 +15,7 @@ def install_systemdboot(encrypt=False):
     root_partition = run_command("""mount -l | awk '/on \/ /' | awk '{printf $1"\\n"}'""")
 
     if "cryptroot" in root_partition:
-        root_partition = run_command("lsblk -f | grep crypto_LUKS | awk '{printf $4}'")
+        root_partition = run_command("blkid | grep 'crypto_LUKS' | grep -Po ' UUID=\"\K[^\"]*'")
 
     for kernel in kernels_installed.splitlines():
         generate_entry(kernel, root_partition, encrypt)
