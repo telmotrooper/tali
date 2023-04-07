@@ -1,5 +1,5 @@
 import os, sys
-from utils.colors import yellow
+from utils.colors import green, yellow
 from utils.get_firmware_interface import get_firmware_interface
 from utils.get_wireless_devices import get_wireless_devices
 from utils.disk_utils import get_disks
@@ -27,7 +27,7 @@ fw_interface = get_firmware_interface()
 print("\nYou're running in " + yellow(fw_interface) + " mode")
 
 if fw_interface == "BIOS":
-    print("\nThis script does not support BIOS, please boot in UEFI mode if possible.")
+    print(f"\nThis script does not support BIOS, please boot in {green("UEFI")} mode if possible.\n")
     sys.exit()
 
 disks = get_disks()
