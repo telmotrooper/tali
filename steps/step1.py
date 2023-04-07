@@ -27,7 +27,7 @@ fw_interface = get_firmware_interface()
 print("\nYou're running in " + yellow(fw_interface) + " mode")
 
 if fw_interface == "BIOS":
-    print(f"\nThis script does not support BIOS, please boot in {green("UEFI")} mode if possible.\n")
+    print(f"\nThis script does not support BIOS, please boot in {green('UEFI')} mode if possible.\n")
     sys.exit()
 
 disks = get_disks()
